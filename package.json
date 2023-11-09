@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev",
+    "lint": "next lint",
+    "migrate": "ley --require tsm",
+    "start": "next start"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
+    "ley": "^0.8.1",
     "next": "14.0.1",
+    "postgres": "^3.4.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "server-only": "^0.0.1",
+    "tsm": "^2.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
