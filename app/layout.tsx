@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import LogoutButton from '../app/(auth)/logout/LogoutButton';
 import { getUserBySessionToken } from '../database/users';
-import LogoutButton from './(auth)/logout/LogoutButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
