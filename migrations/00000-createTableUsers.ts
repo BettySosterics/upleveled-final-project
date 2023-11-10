@@ -2,18 +2,22 @@ import { Sql } from 'postgres';
 
 export type User = {
   id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
   username: string;
+  passwordHash: string;
 };
 
 export async function up(sql: Sql) {
   await sql`
     CREATE TABLE users (
 id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-first_name text NOT NULL,
-last_name text NOT NULL,
-email_address text NOT NULL,
-username varchar(30) NOT NULL,
-password_hash varchar(30) NOT NULL
+first_name VARCHAR(30) NOT NULL,
+last_name VARCHAR(30) NOT NULL,
+email varchar(50) NOT NULL UNIQUE,
+username varchar(30) NOT NULL UNIQUE,
+password_hash varchar(80) NOT NULL
 );
   `;
 }

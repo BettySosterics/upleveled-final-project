@@ -34,10 +34,10 @@ console.log(
     SELECT
       *
     FROM
-      animals
+      users
   `,
 );
 
 // This is only for the example, in your code you will want
 // a persistent connection to the database
-await sql.end();
+// await sql.end();
