@@ -3,8 +3,8 @@ import { z } from 'zod';
 import {
   createUser,
   getUsersWithLimitAndOffset,
-} from '../../../database/users';
-import { User } from '../../../migrations/00000-createTableUsers';
+} from '../../../../database/users';
+import { User } from '../../../../migrations/00000-createTableUsers';
 
 export type Error = {
   error: string;
