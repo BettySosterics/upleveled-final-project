@@ -1,4 +1,3 @@
-import './globals.css';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
