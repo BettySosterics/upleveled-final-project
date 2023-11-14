@@ -4,8 +4,8 @@ import {
   deleteUserById,
   getUserById,
   updateUserById,
-} from '../../../../../database/users';
-import { User } from '../../../../../migrations/00000-createTableUsers';
+} from '../../../../database/users';
+import { User } from '../../../../migrations/00000-createTableUsers';
 import { Error } from '../route';
 
 type UserResponseBodyGet = { user: User } | Error;
