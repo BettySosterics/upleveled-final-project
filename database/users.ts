@@ -30,6 +30,80 @@ export const createUser = cache(
     return user;
   },
 );
+export const getUsers = cache(async () => {
+  // return animals;
+  const users = await sql<User[]>`
+    SELECT
+      *
+    FROM
+      users
+  `;
+  return users;
+});
+
+export const getUserById = cache(async (id: number) => {
+  // Postgres always returns an array
+  const [user] = await sql<User[]>`
+    SELECT
+      *
+    FROM
+      users
+    WHERE
+      id = ${id}
+  `;
+  return user;
+});
+
+export const deleteUserById = cache(async (id: number) => {
+  const [user] = await sql<User[]>`
+    DELETE FROM users
+    WHERE
+      id = ${id} RETURNING *
+  `;
+
+  return user;
+});
+
+export const updateUserById = cache(
+  async (
+    id: number,
+    firstName: string,
+    lastName: string,
+    username: string,
+    passwordHash: string,
+    email: string,
+  ) => {
+    const [user] = await sql<User[]>`
+      UPDATE users
+      SET
+        first_name = ${firstName},
+        last_name = ${lastName},
+        username = ${username},
+        password_hash = ${passwordHash},
+        email = ${email}
+      WHERE
+        id = ${id} RETURNING *
+    `;
+    return user;
+  },
+);
+
+export const getUsersWithLimitAndOffset = cache(
+  async (limit: number, offset: number) => {
+    // return users;
+    const users = await sql<User[]>`
+      SELECT
+        *
+      FROM
+        users
+      LIMIT
+        ${limit}
+      OFFSET
+        ${offset}
+    `;
+    return users;
+  },
+);
 
 export const getUserByUsername = cache(async (username: string) => {
   const [user] = await sql<{ id: number; username: string }[]>`
