@@ -6,6 +6,12 @@ export type UserWithPasswordHash = User & {
   passwordHash: string;
 };
 
+export type UserEvent = {
+  eventId: number;
+  textContent: string;
+  username: string;
+};
+
 export const createUser = cache(
   async (
     firstname: string,
@@ -15,17 +21,26 @@ export const createUser = cache(
     email: string,
   ) => {
     const [user] = await sql<User[]>`
-
-  INSERT INTO users
-  (first_name, last_name, username, password_hash, email)
-  VALUES
-    (${firstname}, ${lastname}, ${username.toLowerCase()}, ${passwordHash}, ${email})
-  RETURNING
-    id,
-    first_name,
-    last_name,
-    username,
-    email
+      INSERT INTO
+        users (
+          first_name,
+          last_name,
+          username,
+          password_hash,
+          email
+        )
+      VALUES
+        (
+          ${firstname},
+          ${lastname},
+          ${username.toLowerCase()},
+          ${passwordHash},
+          ${email}
+        ) RETURNING id,
+        first_name,
+        last_name,
+        username,
+        email
     `;
     return user;
   },
@@ -107,7 +122,6 @@ export const getUsersWithLimitAndOffset = cache(
 
 export const getUserByUsername = cache(async (username: string) => {
   const [user] = await sql<{ id: number; username: string }[]>`
-
     SELECT
       id,
       username
@@ -122,20 +136,19 @@ export const getUserByUsername = cache(async (username: string) => {
 export const getUserWithPasswordHashByUsername = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
-
-    SELECT
-      -- id,
-      -- username,
-      -- first_name AS "firstName",
-      -- last_name AS "lastName",
-      -- password_hash AS "passwordHash",
-      -- email,
-      *
-    FROM
-      users
-    WHERE
-    username = ${username.toLowerCase()}
-  `;
+      SELECT
+        -- id,
+        -- username,
+        -- first_name AS "firstName",
+        -- last_name AS "lastName",
+        -- password_hash AS "passwordHash",
+        -- email,
+        *
+      FROM
+        users
+      WHERE
+        username = ${username.toLowerCase()}
+    `;
     return user;
   },
 );
@@ -154,4 +167,22 @@ export const getUserBySessionToken = cache(async (token: string) => {
       )
   `;
   return user;
+});
+
+export const getUserEventBySessionToken = cache(async (token: string) => {
+  const events = await sql<UserEvent[]>`
+    SELECT
+      events.id AS event_id,
+      events.text_content AS text_content,
+      users.username AS username
+    FROM
+      events
+      INNER JOIN users ON events.user_id = users.id
+      INNER JOIN sessions ON (
+        sessions.token = ${token}
+        AND sessions.user_id = users.id
+        AND sessions.expiry_timestamp > now ()
+      )
+  `;
+  return events;
 });
