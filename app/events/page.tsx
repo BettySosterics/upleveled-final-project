@@ -50,7 +50,7 @@ export default async function EventsPage() {
             </ul>
           </>
         ) : (
-          <h2> No events yet :( </h2>
+          <h2> No events yet {':( '}</h2>
         )}
       </div>
     </div>
