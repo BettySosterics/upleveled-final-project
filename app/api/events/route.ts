@@ -6,12 +6,20 @@ import { getValidSessionByToken } from '../../../database/sessions';
 
 const eventSchema = z.object({
   userId: z.number(),
-  textContent: z.string().min(3),
+  title: z.string().min(3),
+  description: z.string().min(3),
+  location: z.string().min(3),
+  date: z.string().min(3),
 });
 
 export type CreateEventResponseBodyPost =
   | {
-      event: { textContent: string };
+      event: {
+        title: string;
+        description: string;
+        location: string;
+        date: string;
+      };
     }
   | {
       errors: { message: string }[];
@@ -55,7 +63,10 @@ export async function POST(
   // 3. Create the event
   const newEvent = await createEvent(
     result.data.userId,
-    result.data.textContent,
+    result.data.title,
+    result.data.description,
+    result.data.location,
+    result.data.date,
   );
 
   // 4. If the note creation fails, return an error
@@ -71,6 +82,11 @@ export async function POST(
 
   // 6. Return the text content of the event
   return NextResponse.json({
-    event: { textContent: newEvent.textContent },
+    event: {
+      title: newEvent.title,
+      description: newEvent.description,
+      location: newEvent.location,
+      date: newEvent.date,
+    },
   });
 }

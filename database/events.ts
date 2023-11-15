@@ -3,17 +3,29 @@ import { Event } from '../migrations/00002-createTableEvents';
 import { sql } from './connect';
 
 export const createEvent = cache(
-  async (userId: number, textContent: string) => {
+  async (
+    userId: number,
+    title: string,
+    description: string,
+    location: string,
+    date: string,
+  ) => {
     const [event] = await sql<Event[]>`
       INSERT INTO
         events (
           user_id,
-          text_content
+          title,
+          description,
+          location,
+          DATE
         )
       VALUES
         (
           ${userId},
-          ${textContent}
+          ${title},
+          ${description},
+          ${location},
+          ${date}
         ) RETURNING *
     `;
 

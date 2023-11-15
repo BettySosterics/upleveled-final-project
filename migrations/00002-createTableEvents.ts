@@ -3,7 +3,10 @@ import { Sql } from 'postgres';
 export type Event = {
   id: number;
   userId: number;
-  textContent: string;
+  title: string;
+  description: string;
+  location: string;
+  date: string;
 };
 
 export async function up(sql: Sql) {
@@ -12,7 +15,10 @@ export async function up(sql: Sql) {
       events (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-        text_content text NOT NULL
+        title text NOT NULL,
+        description text NOT NULL,
+        location text NOT NULL,
+        DATE TIME NOT NULL
       );
   `;
 }

@@ -2,21 +2,28 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function CreateNoteForm({ userId }: { userId: number }) {
-  const [textContent, setTextContent] = useState('');
-
+export default function CreateEventForm({ userId }: { userId: number }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [date, setDate] = useState('');
   const router = useRouter();
 
   async function handleCreateEvent() {
     await fetch('/api/events', {
       method: 'POST',
       body: JSON.stringify({
-        textContent,
-        userId,
+        title,
+        description,
+        location,
+        date,
       }),
     });
     router.refresh();
-    setTextContent('');
+    setTitle('');
+    setDescription('');
+    setLocation('');
+    setDate('');
   }
 
   return (
@@ -27,15 +34,36 @@ export default function CreateNoteForm({ userId }: { userId: number }) {
       }}
     >
       <label>
-        Add Note:
+        Name of the event:
         <input
-          value={textContent}
-          onChange={(event) => setTextContent(event.currentTarget.value)}
+          value={title}
+          onChange={(event) => setTitle(event.currentTarget.value)}
+        />
+      </label>
+      <label>
+        Short description:
+        <input
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+        />
+      </label>
+      <label>
+        Address:
+        <input
+          value={location}
+          onChange={(event) => setLocation(event.currentTarget.value)}
+        />
+      </label>
+      <label>
+        Date:
+        <input
+          value={date}
+          onChange={(event) => setDate(event.currentTarget.value)}
         />
       </label>
       <br />
       <br />
-      <button>Create +</button>
+      <button>Create event</button>
     </form>
   );
 }

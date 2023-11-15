@@ -30,7 +30,7 @@ export default async function EventsPage() {
   // Display the notes for the current logged in user
   const userEvent = await getUserEventBySessionToken(sessionTokenCookie.value);
 
-  console.log('Checking: ', userEvent);
+  // console.log('Checking: ', userEvent);
 
   return (
     <div>
@@ -42,10 +42,10 @@ export default async function EventsPage() {
       <div>
         {userEvent.length > 0 ? (
           <>
-            <h2>Notes For {user.username}</h2>
+            <h2>Events created by you</h2>
             <ul>
               {userEvent.map((event) => (
-                <li key={`${event.eventId}`}>{event.textContent}</li>
+                <li key={`${event.eventId}`}>{event.eventId}</li>
               ))}
             </ul>
           </>
