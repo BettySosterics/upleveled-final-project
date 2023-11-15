@@ -3,6 +3,11 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
 
+export const metadata = {
+  title: { default: 'Register | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
+
 export default function RegisterForm() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');

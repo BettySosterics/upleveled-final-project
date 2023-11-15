@@ -5,6 +5,11 @@ import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
 
+export const metadata = {
+  title: { default: 'Login | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
+
 type Props = { returnTo?: string | string[] };
 
 export default function LoginForm(props: Props) {

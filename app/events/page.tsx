@@ -6,6 +6,11 @@ import {
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
 
+export const metadata = {
+  title: { default: 'Events | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
+
 export default async function EventsPage() {
   // Task: Restrict access to the notes page and only display notes belonging to the current logged in user
   // 1. Check if the sessionToken cookie exists

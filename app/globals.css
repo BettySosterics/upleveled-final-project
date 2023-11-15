@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  width: 100vw;
+  height: 4rem;
+  background-color: #845ec2;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.logoutButton {
+  padding: 4px 8px;
+  background: transparent;
+  color: azure;
+  border-radius: 6rem;
+  border-color: azure;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+}

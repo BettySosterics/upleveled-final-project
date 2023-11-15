@@ -1,4 +1,7 @@
-'use client';
+export const metadata = {
+  title: { default: 'Profile | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
 
 type Props = {
   params: { username: string; email: string };
