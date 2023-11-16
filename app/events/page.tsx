@@ -43,9 +43,11 @@ export default async function EventsPage() {
         {userEvent.length > 0 ? (
           <>
             <h2>Events created by you</h2>
-            <ul>
+            <ul style={{ padding: 20, listStyle: 'none', border: 10 }}>
               {userEvent.map((event) => (
-                <li key={`${event.eventId}`}>{event.eventId}</li>
+                <li key={`${event.eventId}`} style={{ padding: 10 }}>
+                  <h2>{event.title}</h2> {event.description} {event.location}
+                </li>
               ))}
             </ul>
           </>

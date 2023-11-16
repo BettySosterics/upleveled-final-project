@@ -29,7 +29,7 @@ export const createEvent = cache(
           ${userId},
           ${title},
           ${description},
-          ${location},
+          ${location}
         ) RETURNING *
     `;
 
