@@ -6,24 +6,23 @@ export default function CreateEventForm({ userId }: { userId: number }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
+
   const router = useRouter();
 
   async function handleCreateEvent() {
     await fetch('/api/events', {
       method: 'POST',
       body: JSON.stringify({
+        userId,
         title,
         description,
         location,
-        date,
       }),
     });
     router.refresh();
     setTitle('');
     setDescription('');
     setLocation('');
-    setDate('');
   }
 
   return (
@@ -54,13 +53,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
           onChange={(event) => setLocation(event.currentTarget.value)}
         />
       </label>
-      <label>
-        Date:
-        <input
-          value={date}
-          onChange={(event) => setDate(event.currentTarget.value)}
-        />
-      </label>
+
       <br />
       <br />
       <button>Create event</button>

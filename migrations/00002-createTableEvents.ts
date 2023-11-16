@@ -6,7 +6,6 @@ export type Event = {
   title: string;
   description: string;
   location: string;
-  date: string;
 };
 
 export async function up(sql: Sql) {
@@ -15,10 +14,9 @@ export async function up(sql: Sql) {
       events (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-        title text NOT NULL,
+        title VARCHAR(50) NOT NULL,
         description text NOT NULL,
-        location text NOT NULL,
-        DATE TIME NOT NULL
+        location VARCHAR(50) NOT NULL,
       );
   `;
 }

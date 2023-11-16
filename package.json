@@ -1,7 +1,8 @@
 {
-  "name": "next-js-backend-upleveled-final-project",
+  "name": "upleveled-final-project",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -33,6 +34,5 @@
     "stylelint": "^15.11.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5"
-  },
-  "type": "module"
+  }
 }

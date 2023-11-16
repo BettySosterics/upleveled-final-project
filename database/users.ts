@@ -8,8 +8,9 @@ export type UserWithPasswordHash = User & {
 
 export type UserEvent = {
   eventId: number;
-  textContent: string;
-  username: string;
+  title: string;
+  description: string;
+  location: string;
 };
 
 export const createUser = cache(
@@ -46,7 +47,7 @@ export const createUser = cache(
   },
 );
 export const getUsers = cache(async () => {
-  // return animals;
+  // return users;
   const users = await sql<User[]>`
     SELECT
       *
@@ -173,8 +174,9 @@ export const getUserEventBySessionToken = cache(async (token: string) => {
   const events = await sql<UserEvent[]>`
     SELECT
       events.id AS event_id,
-      events.text_content AS text_content,
-      users.username AS username
+      events.title AS title,
+      events.description AS description,
+      events.location AS location
     FROM
       events
       INNER JOIN users ON events.user_id = users.id

@@ -9,7 +9,6 @@ const eventSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(3),
   location: z.string().min(3),
-  date: z.string().min(3),
 });
 
 export type CreateEventResponseBodyPost =
@@ -18,7 +17,6 @@ export type CreateEventResponseBodyPost =
         title: string;
         description: string;
         location: string;
-        date: string;
       };
     }
   | {
@@ -66,7 +64,6 @@ export async function POST(
     result.data.title,
     result.data.description,
     result.data.location,
-    result.data.date,
   );
 
   // 4. If the note creation fails, return an error
@@ -86,7 +83,6 @@ export async function POST(
       title: newEvent.title,
       description: newEvent.description,
       location: newEvent.location,
-      date: newEvent.date,
     },
   });
 }
