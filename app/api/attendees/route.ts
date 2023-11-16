@@ -1,26 +1,21 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createEvent } from '../../../database/events';
+import { createAttendee } from '../../../database/attendees';
 import { getValidSessionByToken } from '../../../database/sessions';
 
-export type Error = {
-  error: string;
-};
-
-const eventSchema = z.object({
+const attendeeSchema = z.object({
+  eventId: z.number(),
   userId: z.number(),
-  title: z.string().min(3),
-  description: z.string().min(3),
-  location: z.string().min(3),
+  isAttending: z.boolean(),
 });
 
-export type CreateEventResponseBodyPost =
+export type CreateAttendeeResponseBodyPost =
   | {
-      event: {
-        title: string;
-        description: string;
-        location: string;
+      attendee: {
+        eventId: string;
+        userId: string;
+        isAttending: boolean;
       };
     }
   | {
@@ -29,12 +24,12 @@ export type CreateEventResponseBodyPost =
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<CreateEventResponseBodyPost>> {
-  // 1. Get the note data from the request
+): Promise<NextResponse<CreateAttendeeResponseBodyPost>> {
+  // 1. Get the attendee data from the request
   const body = await request.json();
 
   // 2. Validate the data
-  const result = eventSchema.safeParse(body);
+  const result = attendeeSchema.safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
@@ -62,20 +57,19 @@ export async function POST(
     );
   }
 
-  // 3. Create the event
-  const newEvent = await createEvent(
+  // 3. Create the attendee
+  const newAttendee = await createAttendee(
+    result.data.eventId,
     result.data.userId,
-    result.data.title,
-    result.data.description,
-    result.data.location,
+    result.data.isAttending,
   );
 
   // 4. If the note creation fails, return an error
 
-  if (!newEvent) {
+  if (!newAttendee) {
     return NextResponse.json(
       {
-        errors: [{ message: 'Event creation failed' }],
+        errors: [{ message: 'Attendee creation failed' }],
       },
       { status: 500 },
     );
@@ -83,10 +77,10 @@ export async function POST(
 
   // 6. Return the text content of the event
   return NextResponse.json({
-    event: {
-      title: newEvent.title,
-      description: newEvent.description,
-      location: newEvent.location,
+    attendee: {
+      eventId: newAttendee.eventId,
+      userId: newAttendee.userId,
+      isAttending: newAttendee.isAttending,
     },
   });
 }
