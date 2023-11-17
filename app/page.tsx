@@ -26,8 +26,10 @@ export default function Home() {
       <Image
         src="/images/cover.jpg"
         alt="background image"
-        width={1350}
-        height={750}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: '100%', height: 'auto' }}
       />
     </main>
   );

@@ -6,6 +6,7 @@ import {
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
 import DeleteEventForm from './DeleteEventForm';
+import styles from './page.module.css';
 
 export const metadata = {
   title: { default: 'Events | Bandify', template: '%s | Bandify' },
@@ -35,7 +36,7 @@ export default async function EventsPage() {
 
   return (
     <div>
-      <CreateEventForm userId={user.id} />
+      {/* <CreateEventForm userId={user.id} /> */}
 
       <br />
       <br />
@@ -43,18 +44,33 @@ export default async function EventsPage() {
       <div>
         {userEvent.length > 0 ? (
           <>
-            <h2>Events created by you</h2>
-            <ul style={{ padding: 20, listStyle: 'none', border: 10 }}>
+            <h2>Events for you</h2>
+            <ul>
               {userEvent.map((event) => (
-                <li key={`${event.eventId}`} style={{ padding: 10 }}>
+                <li key={`${event.eventId}`} className={styles.eventCard}>
+                  <div>
+                    <h2>{event.title}</h2> <p>{event.description}</p> Address:{' '}
+                    {event.location}
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {/* <ul>
+              {userEvent.map((event) => (
+                <li key={`${event.eventId}`} className={styles.eventCard}>
                   <h2>{event.title}</h2> <p>{event.description}</p> Address:{' '}
                   {event.location} <DeleteEventForm eventId={event.eventId} />
                 </li>
               ))}
-            </ul>
+            </ul> */}
+            <div className={styles.createEventCard}>
+              <CreateEventForm userId={user.id} />
+            </div>
           </>
         ) : (
-          <h2>No events yet</h2>
+          <>
+            <h2>No events yet</h2>
+          </>
         )}
       </div>
     </div>

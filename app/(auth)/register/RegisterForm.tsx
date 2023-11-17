@@ -2,11 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
-
-export const metadata = {
-  title: { default: 'Register | Bandify', template: '%s | Bandify' },
-  description: 'Bandify app',
-};
+import styles from './page.module.css';
 
 export default function RegisterForm() {
   const [firstname, setFirstname] = useState('');
@@ -72,7 +68,7 @@ export default function RegisterForm() {
         Email
         <input onChange={(event) => setEmail(event.currentTarget.value)} />
       </label>
-      <button>Register</button>
+      <button className={styles.registerButton}>Register</button>
 
       {errors.map((error) => (
         <div className="error" key={`error-${error.message}`}>

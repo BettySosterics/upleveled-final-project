@@ -2,6 +2,12 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
 import LoginForm from './LoginForm';
+import styles from './page.module.css';
+
+export const metadata = {
+  title: { default: 'Login | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
 
 type Props = { searchParams: { returnTo?: string | string[] } };
 
@@ -20,7 +26,7 @@ export default async function LoginPage({ searchParams }: Props) {
   // 4. If the sessionToken cookie is invalid or doesn't exist, show the login form
 
   return (
-    <div>
+    <div className={styles.loginForm}>
       <LoginForm returnTo={searchParams.returnTo} />
     </div>
   );

@@ -4,11 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
-
-export const metadata = {
-  title: { default: 'Login | Bandify', template: '%s | Bandify' },
-  description: 'Bandify app',
-};
+import styles from './page.module.css';
 
 type Props = { returnTo?: string | string[] };
 
@@ -42,9 +38,7 @@ export default function LoginForm(props: Props) {
     //   router.push(props.returnTo);
     // }
 
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
-    );
+    router.push(getSafeReturnToPath(props.returnTo) || `/events`);
 
     // revalidatePath() throws unnecessary error, will be used when stable
     // revalidatePath('/(auth)/login', 'page');
@@ -54,17 +48,21 @@ export default function LoginForm(props: Props) {
   return (
     <form onSubmit={async (event) => await handleRegister(event)}>
       <label>
-        Username
-        <input onChange={(event) => setUsername(event.currentTarget.value)} />
+        username
+        <input
+          placeholder="min. 3 characters"
+          onChange={(event) => setUsername(event.currentTarget.value)}
+        />
       </label>
       <label>
-        Password
+        password
         <input
+          placeholder="min. 8 characters"
           type="password"
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
       </label>
-      <button>Login</button>
+      <button className={styles.loginButton}>login</button>
 
       {errors.map((error) => (
         <div className="error" key={`error-${error.message}`}>

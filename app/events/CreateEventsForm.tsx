@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import styles from './page.module.css';
 
 // type Props = {
 //   events: Event[];
@@ -69,8 +70,8 @@ export default function CreateEventForm({ userId }: { userId: number }) {
 
         <br />
         <br />
-        <button>Create event</button>
-      </form>
+        <button className={styles.loginButton}>Create event</button>
+      </form>{' '}
       {/* <>
         {eventList.map((event) => {
           return (

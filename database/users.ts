@@ -158,7 +158,10 @@ export const getUserBySessionToken = cache(async (token: string) => {
   const [user] = await sql<User[]>`
     SELECT
       users.id,
-      users.username
+      users.username,
+      users.email,
+      users.last_name,
+      users.first_name
     FROM
       users
       INNER JOIN sessions ON (

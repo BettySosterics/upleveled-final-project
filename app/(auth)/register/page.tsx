@@ -1,7 +1,13 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
+import styles from './page.module.css';
 import RegisterForm from './RegisterForm';
+
+export const metadata = {
+  title: { default: 'Register | Bandify', template: '%s | Bandify' },
+  description: 'Bandify app',
+};
 
 export default async function RegisterPage() {
   // Task: Add redirect to home if user is logged in
@@ -18,7 +24,7 @@ export default async function RegisterPage() {
   // 4. If the sessionToken cookie is invalid or doesn't exist, show the login form
 
   return (
-    <div>
+    <div className={styles.registerForm}>
       <RegisterForm />
     </div>
   );
