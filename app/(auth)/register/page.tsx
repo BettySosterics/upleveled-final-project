@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
 import styles from './page.module.css';
@@ -24,8 +25,18 @@ export default async function RegisterPage() {
   // 4. If the sessionToken cookie is invalid or doesn't exist, show the login form
 
   return (
-    <div className={styles.registerForm}>
-      <RegisterForm />
-    </div>
+    <>
+      <div className={styles.registerForm} style={{ position: 'absolute' }}>
+        <RegisterForm />
+      </div>
+      <Image
+        src="/images/cover.jpg"
+        alt="background image"
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ width: '100%', height: 'auto' }}
+      />
+    </>
   );
 }

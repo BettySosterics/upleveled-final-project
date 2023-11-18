@@ -47,19 +47,31 @@ export default async function RootLayout(props: Props) {
             {user ? (
               <>
                 <Link
+                  href="/dashboard"
+                  style={{ color: 'white', textDecoration: 'none' }}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/bands"
+                  style={{ color: 'white', textDecoration: 'none' }}
+                >
+                  My bands
+                </Link>
+                <Link
                   href="/events"
                   style={{ color: 'white', textDecoration: 'none' }}
                 >
-                  Events
+                  My events
                 </Link>
                 <Link
                   href={`/profile/${user.username}`}
                   style={{ color: 'white', textDecoration: 'none' }}
                 >
-                  Profile
+                  My profile
                 </Link>
-                <div>{user.username} is logged in</div>
-
+                <div>{user.username} </div>
+                <div style={{ color: 'white' }}>||</div>
                 <LogoutButton />
               </>
             ) : (

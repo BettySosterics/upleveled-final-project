@@ -3,26 +3,36 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <main>
-      <div
+      <header
         style={{
-          color: '#845ec2',
-          fontSize: 42,
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        BANDIFY
-      </div>
-      <div
-        style={{
-          color: '#845ec2',
-          fontSize: 30,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        Your All-In-One Music Collaboration Platform
-      </div>
+        <div
+          style={{
+            color: '#FCF8FF',
+            fontSize: '6rem',
+            position: 'absolute',
+            top: '160px',
+            textShadow: '2px 2px 3px black',
+          }}
+        >
+          BANDIFY
+        </div>
+        <div
+          style={{
+            color: '#FCF8FF',
+            fontSize: '2rem',
+            position: 'absolute',
+            top: '280px',
+            textShadow: '2px 2px 3px black',
+          }}
+        >
+          Your All-In-One Music Collaboration Platform
+        </div>
+      </header>
       <Image
         src="/images/cover.jpg"
         alt="background image"

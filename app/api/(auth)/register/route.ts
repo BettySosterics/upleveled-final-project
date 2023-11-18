@@ -14,6 +14,7 @@ const registerSchema = z.object({
   username: z.string().min(3),
   password: z.string().min(3),
   email: z.string().min(5),
+  imageUrl: z.string(),
 });
 
 export type RegisterResponseBodyPost =
@@ -59,6 +60,7 @@ export async function POST(
     result.data.username,
     passwordHash,
     result.data.email,
+    result.data.imageUrl,
   );
 
   if (!newUser) {

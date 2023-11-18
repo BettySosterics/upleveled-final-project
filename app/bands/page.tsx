@@ -6,8 +6,6 @@ import {
   getUserBySessionToken,
   getUserEventBySessionToken,
 } from '../../database/users';
-import CreateEventForm from './CreateEventsForm';
-import DeleteEventForm from './DeleteEventForm';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -43,50 +41,15 @@ export default async function EventsPage() {
           position: 'absolute',
         }}
       >
-        <br />
-        <br />
-        <br />
-        <div>
-          {userEvent.length > 0 ? (
-            <>
-              <h2
-                style={{
-                  color: '#FCF8FF',
-                  fontSize: '2rem',
-                  textShadow: '2px 2px 3px black',
-                }}
-              >
-                Events for you
-              </h2>
-              <ul>
-                {userEvent.map((event) => (
-                  <li key={`${event.eventId}`} className={styles.eventCard}>
-                    <Link
-                      href={`/events/${event.eventId}`}
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <div>
-                        <h2>{event.title}</h2> <p>{event.description}</p>{' '}
-                        Address: {event.location}
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div className={styles.createEventCard}>
-                <CreateEventForm userId={user.id} />
-              </div>
-            </>
-          ) : (
-            <>
-              <h2>No events yet</h2>
-              <div className={styles.createEventCard}>
-                <CreateEventForm userId={user.id} />
-              </div>
-            </>
-          )}
-        </div>
+        <h2
+          style={{
+            color: '#FCF8FF',
+            fontSize: '2rem',
+            textShadow: '2px 2px 3px black',
+          }}
+        >
+          Your bands
+        </h2>
       </div>
       <Image
         src="/images/cover.jpg"
