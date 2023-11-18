@@ -1,7 +1,9 @@
+import { CldImage } from 'next-cloudinary';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
 import { getUserBySessionToken } from '../../../database/users';
+import UploadForm from './UploadForm';
 
 export const metadata = {
   title: { default: 'Profile | Bandify', template: '%s | Bandify' },
@@ -14,6 +16,7 @@ type Props = {
     email: string;
     firstName: string;
     lastName: string;
+    imageUrl: string;
   };
   children: ReactNode;
 };
@@ -31,6 +34,9 @@ export default async function UserProfilePage({ params }: Props) {
       {user ? (
         <>
           <h2>Profile</h2>
+
+          <UploadForm />
+          <div>{user.imageUrl}</div>
           <div>{user.username}</div>
           <div>{user.email} </div>
           <div>{user.firstName} </div>

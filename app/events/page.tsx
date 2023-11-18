@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import {
   getUserBySessionToken,
@@ -48,21 +49,19 @@ export default async function EventsPage() {
             <ul>
               {userEvent.map((event) => (
                 <li key={`${event.eventId}`} className={styles.eventCard}>
-                  <div>
-                    <h2>{event.title}</h2> <p>{event.description}</p> Address:{' '}
-                    {event.location}
-                  </div>
+                  <Link
+                    href={`/events/${event.eventId}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div>
+                      <h2>{event.title}</h2> <p>{event.description}</p> Address:{' '}
+                      {event.location}
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
-            {/* <ul>
-              {userEvent.map((event) => (
-                <li key={`${event.eventId}`} className={styles.eventCard}>
-                  <h2>{event.title}</h2> <p>{event.description}</p> Address:{' '}
-                  {event.location} <DeleteEventForm eventId={event.eventId} />
-                </li>
-              ))}
-            </ul> */}
+
             <div className={styles.createEventCard}>
               <CreateEventForm userId={user.id} />
             </div>
@@ -70,6 +69,9 @@ export default async function EventsPage() {
         ) : (
           <>
             <h2>No events yet</h2>
+            <div className={styles.createEventCard}>
+              <CreateEventForm userId={user.id} />
+            </div>
           </>
         )}
       </div>

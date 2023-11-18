@@ -15,11 +15,12 @@ export type UserEvent = {
 
 export const createUser = cache(
   async (
-    firstname: string,
-    lastname: string,
+    firstName: string,
+    lastName: string,
     username: string,
     passwordHash: string,
     email: string,
+    imageUrl: string,
   ) => {
     const [user] = await sql<User[]>`
       INSERT INTO
@@ -28,20 +29,23 @@ export const createUser = cache(
           last_name,
           username,
           password_hash,
-          email
+          email,
+          image_url
         )
       VALUES
         (
-          ${firstname},
-          ${lastname},
+          ${firstName},
+          ${lastName},
           ${username.toLowerCase()},
           ${passwordHash},
-          ${email}
+          ${email},
+          ${imageUrl}
         ) RETURNING id,
         first_name,
         last_name,
         username,
-        email
+        email,
+        image_url
     `;
     return user;
   },
@@ -88,6 +92,7 @@ export const updateUserById = cache(
     username: string,
     passwordHash: string,
     email: string,
+    imageUrl: string,
   ) => {
     const [user] = await sql<User[]>`
       UPDATE users
@@ -96,7 +101,8 @@ export const updateUserById = cache(
         last_name = ${lastName},
         username = ${username},
         password_hash = ${passwordHash},
-        email = ${email}
+        email = ${email},
+        image_url = ${imageUrl}
       WHERE
         id = ${id} RETURNING *
     `;
@@ -161,7 +167,8 @@ export const getUserBySessionToken = cache(async (token: string) => {
       users.username,
       users.email,
       users.last_name,
-      users.first_name
+      users.first_name,
+      users.image_url
     FROM
       users
       INNER JOIN sessions ON (

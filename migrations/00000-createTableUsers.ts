@@ -7,6 +7,7 @@ export type User = {
   email: string;
   username: string;
   passwordHash: string;
+  imageUrl: string;
 };
 
 export async function up(sql: Sql) {
@@ -18,7 +19,8 @@ export async function up(sql: Sql) {
         last_name VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
         username VARCHAR(30) NOT NULL UNIQUE,
-        password_hash VARCHAR(80) NOT NULL
+        password_hash VARCHAR(80) NOT NULL,
+        image_url VARCHAR(30)
       );
   `;
 }

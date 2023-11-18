@@ -46,28 +46,33 @@ export default function CreateEventForm({ userId }: { userId: number }) {
           await handleCreateEvent();
         }}
       >
-        <label>
-          Name of the event:
-          <input
-            value={title}
-            onChange={(event) => setTitle(event.currentTarget.value)}
-          />
-        </label>
-        <label>
-          Short description:
-          <input
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-          />
-        </label>
-        <label>
-          Address:
-          <input
-            value={location}
-            onChange={(event) => setLocation(event.currentTarget.value)}
-          />
-        </label>
-
+        <div>
+          <label>
+            Name of the event:
+            <input
+              value={title}
+              onChange={(event) => setTitle(event.currentTarget.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Short description:
+            <input
+              value={description}
+              onChange={(event) => setDescription(event.currentTarget.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Address:
+            <input
+              value={location}
+              onChange={(event) => setLocation(event.currentTarget.value)}
+            />
+          </label>
+        </div>
         <br />
         <br />
         <button className={styles.loginButton}>Create event</button>

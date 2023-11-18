@@ -18,6 +18,7 @@ const userSchema = z.object({
   username: z.string(),
   passwordHash: z.string(),
   email: z.string(),
+  imageUrl: z.string(),
 });
 
 export async function GET(
@@ -89,6 +90,7 @@ export async function PUT(
     result.data.username,
     result.data.passwordHash,
     result.data.email,
+    result.data.imageUrl,
   );
 
   if (!user) {
