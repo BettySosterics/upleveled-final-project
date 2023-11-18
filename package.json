@@ -11,9 +11,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/third-parties": "^14.0.3",
+    "@react-google-maps/api": "^2.19.2",
+    "@vis.gl/react-google-maps": "^0.3.3",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "formidable": "^3.5.1",
+    "install": "^0.13.0",
+    "invariant": "^2.2.4",
     "ley": "^0.8.1",
     "next": "14.0.2",
     "next-cloudinary": "^5.7.0",
@@ -23,6 +28,7 @@
     "server-only": "^0.0.1",
     "sharp": "^0.32.6",
     "tsm": "^2.3.0",
+    "use-places-autocomplete": "^4.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

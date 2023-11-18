@@ -1,3 +1,4 @@
+import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,8 +8,9 @@ import {
   getUserEventBySessionToken,
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
-import DeleteEventForm from './DeleteEventForm';
 import styles from './page.module.css';
+
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export const metadata = {
   title: { default: 'Events | Bandify', template: '%s | Bandify' },
@@ -65,9 +67,16 @@ export default async function EventsPage() {
                       href={`/events/${event.eventId}`}
                       style={{ textDecoration: 'none' }}
                     >
-                      <div>
-                        <h2>{event.title}</h2> <p>{event.description}</p>{' '}
-                        Address: {event.location}
+                      <div style={{ color: '#845EC2' }}>
+                        <h2>{event.title}</h2> <p>{event.description}</p>
+                        {event.location}{' '}
+                        <GoogleMapsEmbed
+                          apiKey={API_KEY}
+                          height={100}
+                          width={400}
+                          mode="place"
+                          q={event.location}
+                        />
                       </div>
                     </Link>
                   </li>

@@ -1,14 +1,12 @@
 'use client';
+import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './page.module.css';
 
-// type Props = {
-//   events: Event[];
-// };
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export default function CreateEventForm({ userId }: { userId: number }) {
-  // const [eventList, setEventList] = useState(events);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
@@ -30,13 +28,6 @@ export default function CreateEventForm({ userId }: { userId: number }) {
     setDescription('');
     setLocation('');
   }
-  // async function handleDeleteEvent(id: number) {
-  //   const response = await fetch(`/api/events/${id}`, {
-  //     method: 'DELETE',
-  //   });
-  //   const data = await response.json();
-  //   setEventList(eventList.filter((event) => event.id !== data.event.id));
-  // }
 
   return (
     <>
@@ -68,7 +59,6 @@ export default function CreateEventForm({ userId }: { userId: number }) {
           <label>
             Address:
             <input
-              value={location}
               onChange={(event) => setLocation(event.currentTarget.value)}
             />
           </label>
@@ -77,15 +67,15 @@ export default function CreateEventForm({ userId }: { userId: number }) {
         <br />
         <button className={styles.loginButton}>Create event</button>
       </form>{' '}
-      {/* <>
-        {eventList.map((event) => {
-          return (
-            <button onClick={async () => await handleDeleteEvent(event.id)}>
-              Delete
-            </button>
-          );
-        })}
-      </> */}
+      {location.trim() !== '' && (
+        <GoogleMapsEmbed
+          apiKey={API_KEY}
+          height={100}
+          width={200}
+          mode="place"
+          q={location}
+        />
+      )}
     </>
   );
 }
