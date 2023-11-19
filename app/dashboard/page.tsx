@@ -6,6 +6,10 @@ import {
   getUserBySessionToken,
   getUserEventBySessionToken,
 } from '../../database/users';
+import Calendar from './Calendar';
+import CalendarView from './Calendar';
+import DoubleButton from './Calendar';
+import GoogleCalendar from './Calendar';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -36,32 +40,41 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div style={{ position: 'absolute' }}>
-        <div>
+      <div className="flex items-center ">
+        <div className="absolute top-60 gap-40">
           <>
-            <h2
-              className={styles.eventCard}
-              style={{
-                color: '#FCF8FF',
-                fontSize: '2rem',
-                textShadow: '2px 2px 3px black',
-              }}
-            >
-              Your events
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              pentatonix
             </h2>
-            <h2
-              className={styles.eventCard}
-              style={{
-                color: '#FCF8FF',
-                fontSize: '2rem',
-                textShadow: '2px 2px 3px black',
-              }}
-            >
-              Your bands
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              green day
+            </h2>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              tokio hotel
+            </h2>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              fall out boy
+            </h2>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              insalata mestiza
+            </h2>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
+              tokio hotel
             </h2>
           </>
         </div>
       </div>
+
+      <div className="flex items-center justify-center">
+        <div className="absolute top-60 right-100 gap-40">
+          <>
+            <div>
+              <CalendarView />
+            </div>
+          </>
+        </div>
+      </div>
+
       <Image
         src="/images/cover.jpg"
         alt="background image"

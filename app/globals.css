@@ -1,4 +1,8 @@
-* {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * {
   margin: 0;
   padding: 0;
 }
@@ -29,4 +33,4 @@ nav {
   font-size: 18px;
   display: flex;
   justify-content: flex-end;
-}
+} */

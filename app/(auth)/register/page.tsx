@@ -2,7 +2,6 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
-import styles from './page.module.css';
 import RegisterForm from './RegisterForm';
 
 export const metadata = {
@@ -26,8 +25,10 @@ export default async function RegisterPage() {
 
   return (
     <>
-      <div className={styles.registerForm} style={{ position: 'absolute' }}>
-        <RegisterForm />
+      <div className="flex items-center justify-center">
+        <div className="absolute top-60">
+          <RegisterForm />
+        </div>
       </div>
       <Image
         src="/images/cover.jpg"

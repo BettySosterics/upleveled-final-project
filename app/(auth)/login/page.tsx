@@ -28,8 +28,10 @@ export default async function LoginPage({ searchParams }: Props) {
 
   return (
     <>
-      <div className={styles.loginForm} style={{ position: 'absolute' }}>
-        <LoginForm returnTo={searchParams.returnTo} />
+      <div className="flex items-center justify-center">
+        <div className="absolute top-60">
+          <LoginForm returnTo={searchParams.returnTo} />
+        </div>
       </div>
       <Image
         src="/images/cover.jpg"

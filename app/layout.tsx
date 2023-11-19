@@ -35,7 +35,7 @@ export default async function RootLayout(props: Props) {
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          <div>
+          <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-violet-900 text-neutral-300 font-medium">
             <Link href="/">
               <Image
                 src="/images/logo-transparent.png"
@@ -46,46 +46,35 @@ export default async function RootLayout(props: Props) {
             </Link>
             {user ? (
               <>
-                <Link
-                  href="/dashboard"
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
+                <Link href="/dashboard" className="hover:text-white">
                   Dashboard
                 </Link>
-                <Link
-                  href="/bands"
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
+                <Link href="/bands" className="hover:text-white">
                   My bands
                 </Link>
-                <Link
-                  href="/events"
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
+                <Link href="/events" className="hover:text-white">
                   My events
                 </Link>
-                <Link
-                  href={`/profile/${user.username}`}
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
-                  My profile
-                </Link>
-                <div>{user.username} </div>
-                <div style={{ color: 'white' }}>||</div>
-                <LogoutButton />
+
+                <div className="flex items-center justify-center gap-4">
+                  <Link
+                    href={`/profile/${user.username}`}
+                    className="hover:text-white"
+                  >
+                    <div>{user.username}</div>
+                  </Link>
+
+                  <div className="border border-white rounded-full px-5 py-1  hover:bg-violet-700 ">
+                    <LogoutButton />
+                  </div>
+                </div>
               </>
             ) : (
               <>
-                <Link
-                  href="/register"
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
+                <Link href="/register" className="hover:text-white">
                   Register
                 </Link>
-                <Link
-                  href="/login"
-                  style={{ color: 'white', textDecoration: 'none' }}
-                >
+                <Link href="/login" className="hover:text-white">
                   Login
                 </Link>
               </>
