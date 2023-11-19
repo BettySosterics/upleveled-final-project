@@ -1,92 +1,92 @@
 import 'server-only';
 import { cache } from 'react';
 import { sql } from '../database/connect';
-import { Attendee } from '../migrations/00003-createTableAttendees';
+import { Comment } from '../migrations/00005-createTableComments';
 
-export const getAttendees = cache(async () => {
-  // return attendees;
-  const attendees = await sql<Attendee[]>`
+export const getComments = cache(async () => {
+  // return comments;
+  const comments = await sql<Comment[]>`
     SELECT
       *
     FROM
-      attendees
+      comments
   `;
-  return attendees;
+  return comments;
 });
 
-export const getAttendeesWithLimitAndOffset = cache(
+export const getCommentsWithLimitAndOffset = cache(
   async (limit: number, offset: number) => {
-    // return attendees;
-    const attendees = await sql<Attendee[]>`
+    // return comments;
+    const comments = await sql<Comment[]>`
       SELECT
         *
       FROM
-        attendees
+        comments
       LIMIT
         ${limit}
       OFFSET
         ${offset}
     `;
-    return attendees;
+    return comments;
   },
 );
 
-export const getAttendeeById = cache(async (id: number) => {
+export const getCommentById = cache(async (id: number) => {
   // Postgres always returns an array
-  const [attendee] = await sql<Attendee[]>`
+  const [comment] = await sql<Comment[]>`
     SELECT
       *
     FROM
-      attendees
+      comment
     WHERE
       id = ${id}
   `;
-  return attendee;
+  return comment;
 });
 
-export const deleteAttendeeById = cache(async (id: number) => {
-  const [attendee] = await sql<Attendee[]>`
-    DELETE FROM attendees
+export const deleteCommentById = cache(async (id: number) => {
+  const [comment] = await sql<Comment[]>`
+    DELETE FROM comments
     WHERE
       id = ${id} RETURNING *
   `;
 
-  return attendee;
+  return comment;
 });
 
-export const createAttendee = cache(
-  async (userId: number, eventId: number, isAttending: boolean) => {
-    const [attendee] = await sql<Attendee[]>`
+export const createComment = cache(
+  async (userId: number, eventId: number, textContent: string) => {
+    const [comment] = await sql<Comment[]>`
       INSERT INTO
-        attendees (
-          event_id,
+        comments (
           user_id,
-          is_attending
+          event_id,
+          text_content
         )
       VALUES
         (
-          ${eventId},
           ${userId},
-          ${isAttending}
+          ${eventId},
+          ${textContent}
         ) RETURNING *
     `;
 
-    return attendee;
+    return comment;
   },
 );
 
-export const updateAttendeeById = cache(
-  async (id: number, userId: number, eventId: number, isAttending: boolean) => {
-    const [attendee] = await sql<Attendee[]>`
-      UPDATE attendees
+export const updateCommentById = cache(
+  async (id: number, userId: number, eventId: number, textContent: string) => {
+    const [comment] = await sql<Comment[]>`
+      UPDATE comments
       SET
         user_id = ${userId},
         event_id = ${eventId},
-        is_attending = ${isAttending}
+        text_content = ${textContent}
       WHERE
         id = ${id} RETURNING *
     `;
-    return attendee;
+    return comment;
   },
 );
 

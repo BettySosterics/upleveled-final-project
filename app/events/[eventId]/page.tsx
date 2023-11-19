@@ -1,15 +1,19 @@
+// 'use client';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { getEventById } from '../../../database/events';
 import {
   getUserBySessionToken,
+  getUserCommentBySessionToken,
   getUserEventBySessionToken,
 } from '../../../database/users';
-import CreateEventForm from './CreateEventsForm';
-import styles from './page.module.css';
+import CreateCommentForm from './CreateCommentForm';
+
+// import { AttendeeResponseBodyPost } from '../../api/attendee/route';
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
@@ -45,38 +49,49 @@ export default async function EventPage(props: Props) {
   if (!singleEvent) {
     return notFound();
   }
+
+  // Display the notes for the current logged in user
+  const userComment = await getUserCommentBySessionToken(
+    sessionTokenCookie.value,
+  );
+
+  console.log('Checking: ', userComment);
+
   return (
     <>
-      <div style={{ position: 'absolute' }}>
-        <h1
-          style={{
-            color: '#FCF8FF',
-            fontSize: '2rem',
-            textShadow: '2px 2px 3px black',
-          }}
-        >
-          {singleEvent.title}
-        </h1>
-        <p
-          style={{
-            color: '#FCF8FF',
-            fontSize: '0.9rem',
-            textShadow: '2px 2px 3px black',
-          }}
-        >
-          {singleEvent.description}
-        </p>
-
-        <GoogleMapsEmbed
-          apiKey={API_KEY}
-          height={100}
-          width={400}
-          mode="place"
-          q={singleEvent.location}
-        />
-        <Link href="/events">back to all events</Link>
+      <div>
+        <h1>{singleEvent.title}</h1>
+        <p>{singleEvent.description}</p>
       </div>
-      <div style={{ position: 'absolute', bottom: '200px' }}></div>
+
+      <GoogleMapsEmbed
+        apiKey={API_KEY}
+        height={100}
+        width={400}
+        mode="place"
+        q={singleEvent.location}
+      />
+
+      <div>
+        {userComment.length > 0 ? (
+          <>
+            <h2>Comments on the event</h2>
+            <ul>
+              {userComment.map((comment) => (
+                <li key={`${comment.commentId}`}>{comment.textContent}</li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <>
+            <h2>No notes yet</h2>
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <CreateCommentForm userId={user.id} eventId={user.id} />
+            </div>
+          </>
+        )}
+      </div>
+
       <Image
         src="/images/cover.jpg"
         alt="background image"

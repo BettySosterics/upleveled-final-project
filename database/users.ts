@@ -13,6 +13,12 @@ export type UserEvent = {
   location: string;
 };
 
+export type UserComment = {
+  commentId: number;
+  textContent: string;
+  username: string;
+};
+
 export const createUser = cache(
   async (
     firstName: string,
@@ -190,4 +196,22 @@ export const getUserEventBySessionToken = cache(async (token: string) => {
       )
   `;
   return events;
+});
+
+export const getUserCommentBySessionToken = cache(async (token: string) => {
+  const comments = await sql<UserComment[]>`
+    SELECT
+      comments.id AS comment_id,
+      comments.text_content AS text_content,
+      users.username AS username
+    FROM
+      comments
+      INNER JOIN users ON comments.user_id = users.id
+      INNER JOIN sessions ON (
+        sessions.token = ${token}
+        AND sessions.user_id = users.id
+        AND sessions.expiry_timestamp > now ()
+      )
+  `;
+  return comments;
 });

@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
@@ -10,6 +11,7 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
+
   const router = useRouter();
 
   async function handleRegister(event: React.FormEvent<HTMLFormElement>) {

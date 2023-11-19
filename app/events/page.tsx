@@ -8,7 +8,6 @@ import {
   getUserEventBySessionToken,
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
-import styles from './page.module.css';
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
@@ -40,35 +39,20 @@ export default async function EventsPage() {
 
   return (
     <>
-      <div
-        style={{
-          position: 'absolute',
-        }}
-      >
-        <br />
-        <br />
-        <br />
+      <div className="absolute">
         <div>
           {userEvent.length > 0 ? (
             <>
-              <h2
-                style={{
-                  color: '#FCF8FF',
-                  fontSize: '2rem',
-                  textShadow: '2px 2px 3px black',
-                }}
-              >
+              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
                 Events for you
               </h2>
               <ul>
                 {userEvent.map((event) => (
-                  <li key={`${event.eventId}`} className={styles.eventCard}>
-                    <Link
-                      href={`/events/${event.eventId}`}
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <div style={{ color: '#845EC2' }}>
-                        <h2>{event.title}</h2> <p>{event.description}</p>
+                  <li key={`${event.eventId}`}>
+                    <Link href={`/events/${event.eventId}`}>
+                      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  block text-gray-700 font-bold ">
+                        <h2 className="text-l">{event.title}</h2>{' '}
+                        <p>{event.description}</p>
                         {event.location}{' '}
                         <GoogleMapsEmbed
                           apiKey={API_KEY}
@@ -83,14 +67,14 @@ export default async function EventsPage() {
                 ))}
               </ul>
 
-              <div className={styles.createEventCard}>
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateEventForm userId={user.id} />
               </div>
             </>
           ) : (
             <>
               <h2>No events yet</h2>
-              <div className={styles.createEventCard}>
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateEventForm userId={user.id} />
               </div>
             </>
