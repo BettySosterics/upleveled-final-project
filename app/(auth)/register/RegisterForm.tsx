@@ -34,7 +34,7 @@ export default function RegisterForm() {
       return;
     }
 
-    router.push(`/profile/${data.user.username}`);
+    router.push(`/dashboard`);
 
     /* if (response.ok) {
       const data = await response.json();

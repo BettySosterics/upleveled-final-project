@@ -8,7 +8,9 @@ export type UserWithPasswordHash = User & {
 };
 
 export type UserEvent = {
+  userId: number;
   eventId: number;
+  username: number;
   title: string;
   description: string;
   location: string;
@@ -17,6 +19,8 @@ export type UserEvent = {
 export const createEvent = cache(
   async (
     userId: number,
+    eventId: number,
+    username: string,
     title: string,
     description: string,
     location: string,
@@ -25,6 +29,8 @@ export const createEvent = cache(
       INSERT INTO
         events (
           user_id,
+          event_id,
+          username,
           title,
           description,
           location
@@ -32,6 +38,8 @@ export const createEvent = cache(
       VALUES
         (
           ${userId},
+          ${eventId},
+          ${username},
           ${title},
           ${description},
           ${location}

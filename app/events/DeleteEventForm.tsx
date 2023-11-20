@@ -1,24 +1,31 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { Event } from '../../migrations/00002-createTableEvents';
+
+// type Props = {
+//   events: Event[];
+// };
 
 export default function DeleteEventForm({ eventId }: { eventId: number }) {
-  const router = useRouter();
+  // const [eventList, setEventList] = useState('');
 
-  async function handleDeleteEvent() {
-    await fetch(`/api/events/`, {
+  async function deleteEventById(id: number) {
+    const response = await fetch(`/api/events/${id}`, {
       method: 'DELETE',
     });
-    router.refresh();
+
+    // const data = await response.json();
+
+    // setEventList(eventList.filter((event) => event.id !== data.event.id));
   }
+
   return (
-    <form
-      onSubmit={async (event) => {
-        event.preventDefault();
-        await handleDeleteEvent();
-      }}
+    <button
+      onClick={async () => await deleteEventById(eventId)}
+      className=" bg-white hover:bg-white text-violet-800 font-bold py-2 px-4 rounded outline "
     >
-      <button>Delete event</button>
-    </form>
+      Delete
+    </button>
   );
 }

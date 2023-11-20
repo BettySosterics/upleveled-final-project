@@ -3,6 +3,8 @@ import { Sql } from 'postgres';
 export type Event = {
   id: number;
   userId: number;
+  eventId: number;
+  username: string;
   title: string;
   description: string;
   location: string;
@@ -14,6 +16,10 @@ export async function up(sql: Sql) {
       events (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+        event_id INTEGER NOT NULL REFERENCES events (id) ON DELETE CASCADE,
+        username VARCHAR(30) NOT NULL REFERENCES users (
+          username
+        ) ON DELETE CASCADE,
         title VARCHAR(50) NOT NULL,
         description text NOT NULL,
         location VARCHAR(50) NOT NULL

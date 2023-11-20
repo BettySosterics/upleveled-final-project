@@ -1,93 +1,94 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import {
-  createComment,
-  getCommentsWithLimitAndOffset,
-} from '../../../database/comments';
-import { Comment } from '../../../migrations/00005-createTableComments';
+import { createComment } from '../../../database/comments';
+import { getValidSessionByToken } from '../../../database/sessions';
 
 export type Error = {
   error: string;
 };
 
-type CommentsResponseBodyGet =
-  | {
-      comments: Comment[];
-    }
-  | Error;
-
-type CommentsResponseBodyPost =
-  | {
-      comment: Comment;
-    }
-  | Error;
-
 const commentSchema = z.object({
   userId: z.number(),
   eventId: z.number(),
+  username: z.string(),
   textContent: z.string(),
 });
 
-export async function GET(
-  request: NextRequest,
-): Promise<NextResponse<CommentsResponseBodyGet>> {
-  const { searchParams } = new URL(request.url);
-
-  const limit = Number(searchParams.get('limit'));
-  const offset = Number(searchParams.get('offset'));
-
-  if (!limit || !offset) {
-    return NextResponse.json(
-      {
-        error: 'Limit and Offset need to be passed as params',
-      },
-      { status: 400 },
-    );
-  }
-
-  // query the database to get all the animals only if a valid session token is passed
-  const comments = await getCommentsWithLimitAndOffset(limit, offset);
-
-  return NextResponse.json({
-    comments: comments,
-  });
-}
+export type CreateCommentResponseBodyPost =
+  | {
+      comment: {
+        userId: number;
+        eventId: number;
+        username: string;
+        textContent: string;
+      };
+    }
+  | {
+      errors: { message: string }[];
+    };
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<CommentsResponseBodyPost>> {
+): Promise<NextResponse<CreateCommentResponseBodyPost>> {
+  // 1. Get the note data from the request
   const body = await request.json();
 
+  // 2. Validate the data
   const result = commentSchema.safeParse(body);
 
   if (!result.success) {
-    // zod send you details about the error
-    // console.log(result.error);
     return NextResponse.json(
+      { errors: result.error.issues },
       {
-        error: 'The data is incomplete',
+        status: 400,
       },
-      { status: 400 },
     );
   }
 
-  // Get the users from the database
-  const comment = await createComment(
+  // 1. get the token from the cookie
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the token has a valid session
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+
+  if (!session) {
+    return NextResponse.json(
+      {
+        errors: [{ message: 'Authentication token is invalid' }],
+      },
+      { status: 401 },
+    );
+  }
+
+  // 3. Create the event
+  const newComment = await createComment(
     result.data.userId,
     result.data.eventId,
+    result.data.username,
     result.data.textContent,
   );
 
-  if (!comment) {
+  // 4. If the note creation fails, return an error
+
+  if (!newComment) {
     return NextResponse.json(
       {
-        error: 'Error creating the new animal',
+        errors: [{ message: 'Event creation failed' }],
       },
       { status: 500 },
     );
   }
 
+  // 6. Return the text content of the event
   return NextResponse.json({
-    comment: comment,
+    comment: {
+      userId: newComment.userId,
+      eventId: newComment.eventId,
+      username: newComment.username,
+      textContent: newComment.textContent,
+    },
   });
 }

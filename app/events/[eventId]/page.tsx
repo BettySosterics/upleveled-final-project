@@ -20,6 +20,7 @@ const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 type Props = {
   params: {
     eventId: string;
+    username: string;
     title: string;
     description: string;
     location: string;
@@ -44,54 +45,71 @@ export default async function EventPage(props: Props) {
   if (!user) redirect('/login?returnTo=/events');
 
   // Display the notes for the current logged in user
-  const userEvent = await getUserEventBySessionToken(sessionTokenCookie.value);
+
   const singleEvent = await getEventById(Number(props.params.eventId));
-  if (!singleEvent) {
-    return notFound();
-  }
 
   // Display the notes for the current logged in user
   const userComment = await getUserCommentBySessionToken(
-    sessionTokenCookie.value,
+    sessionTokenCookie.value
   );
+
+  if (!singleEvent) {
+    return notFound();
+  }
 
   console.log('Checking: ', userComment);
 
   return (
     <>
-      <div>
-        <h1>{singleEvent.title}</h1>
-        <p>{singleEvent.description}</p>
+      <div className="absolute">
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h1>{singleEvent.title}</h1>
+          <p>{singleEvent.description}</p>
+          <GoogleMapsEmbed
+            apiKey={API_KEY}
+            height={100}
+            width={400}
+            mode="place"
+            q={singleEvent.location}
+          />
+        </div>
+
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          {userComment.length > 0 ? (
+            <>
+              <h2>Comments on the event</h2>
+              <ul>
+                {userComment.map((comment) => (
+                  <li key={`${comment.commentId}`}>
+                    {comment.textContent} {comment.username}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <CreateCommentForm
+                  userId={user.id}
+                  eventId={user.id}
+                  username={user.username}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <h2>No comments yet</h2>
+                <p>Create one now!</p>
+
+                <CreateCommentForm
+                  userId={user.id}
+                  eventId={user.id}
+                  username={user.username}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
-
-      <GoogleMapsEmbed
-        apiKey={API_KEY}
-        height={100}
-        width={400}
-        mode="place"
-        q={singleEvent.location}
-      />
-
-      <div>
-        {userComment.length > 0 ? (
-          <>
-            <h2>Comments on the event</h2>
-            <ul>
-              {userComment.map((comment) => (
-                <li key={`${comment.commentId}`}>{comment.textContent}</li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <>
-            <h2>No notes yet</h2>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <CreateCommentForm userId={user.id} eventId={user.id} />
-            </div>
-          </>
-        )}
-      </div>
-
       <Image
         src="/images/cover.jpg"
         alt="background image"

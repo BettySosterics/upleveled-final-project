@@ -1,4 +1,4 @@
-import { GoogleMapsEmbed } from '@next/third-parties/google';
+// import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,8 +8,10 @@ import {
   getUserEventBySessionToken,
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
+import DeleteEventForm from './DeleteEventForm';
+import GetAllEvents from './GetAllEvents';
 
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export const metadata = {
   title: { default: 'Events | Bandify', template: '%s | Bandify' },
@@ -39,30 +41,37 @@ export default async function EventsPage() {
 
   return (
     <>
-      <div className="absolute">
+      <div className="absolute grid grid-cols-3 gap-40 mx-20">
+        <div>
+          <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
+            All events
+          </h2>
+          <GetAllEvents />
+        </div>
         <div>
           {userEvent.length > 0 ? (
             <>
               <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
-                Events for you
+                Events created by you
               </h2>
               <ul>
                 {userEvent.map((event) => (
                   <li key={`${event.eventId}`}>
-                    <Link href={`/events/${event.eventId}`}>
-                      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  block text-gray-700 font-bold ">
+                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  block text-gray-700 font-bold ">
+                      <DeleteEventForm eventId={event.eventId} />
+                      <Link href={`/events/${event.eventId}`}>
                         <h2 className="text-l">{event.title}</h2>{' '}
                         <p>{event.description}</p>
                         {event.location}{' '}
-                        <GoogleMapsEmbed
-                          apiKey={API_KEY}
-                          height={100}
-                          width={400}
-                          mode="place"
-                          q={event.location}
-                        />
-                      </div>
-                    </Link>
+                      </Link>
+                      {/* <GoogleMapsEmbed
+                        apiKey={API_KEY}
+                        height={100}
+                        width={400}
+                        mode="place"
+                        q={event.location}
+                      /> */}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -73,7 +82,9 @@ export default async function EventsPage() {
             </>
           ) : (
             <>
-              <h2>No events yet</h2>
+              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
+                You haven't created any event yet
+              </h2>
               <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateEventForm userId={user.id} />
               </div>

@@ -5,7 +5,7 @@ import {
   createAttendee,
   getAttendeesWithLimitAndOffset,
 } from '../../../database/attendees';
-import { Attendee } from '../../../migrations/00003-createTableAttendees';
+import { Attendee } from '../../../migrations/00005-createTableAttendees';
 
 export type Error = {
   error: string;

@@ -1,7 +1,7 @@
 import 'server-only';
 import { cache } from 'react';
 import { sql } from '../database/connect';
-import { Attendee } from '../migrations/00003-createTableAttendees';
+import { Attendee } from '../migrations/00005-createTableAttendees';
 
 export const getAttendees = cache(async () => {
   // return attendees;

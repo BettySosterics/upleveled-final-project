@@ -12,7 +12,7 @@ const registerSchema = z.object({
   firstname: z.string().min(2),
   lastname: z.string().min(2),
   username: z.string().min(3),
-  password: z.string().min(3),
+  password: z.string().min(8),
   email: z.string().min(5),
 });
 

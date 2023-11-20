@@ -5,7 +5,7 @@ import {
   getCommentById,
   updateCommentById,
 } from '../../../../database/comments';
-import { Comment } from '../../../../migrations/00005-createTableComments';
+import { Comment } from '../../../../migrations/00003-createTableComments';
 import { Error } from '../route';
 
 type CommentResponseBodyGet = { comment: Comment } | Error;
@@ -15,6 +15,7 @@ type CommentResponseBodyDelete = { comment: Comment } | Error;
 const commentSchema = z.object({
   userId: z.number(),
   eventId: z.number(),
+  username: z.string(),
   textContent: z.string(),
 });
 
@@ -84,6 +85,7 @@ export async function PUT(
     commentId,
     result.data.eventId,
     result.data.userId,
+    result.data.username,
     result.data.textContent,
   );
 

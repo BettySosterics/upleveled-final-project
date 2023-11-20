@@ -1,7 +1,7 @@
 import 'server-only';
 import { cache } from 'react';
 import { sql } from '../database/connect';
-import { Comment } from '../migrations/00005-createTableComments';
+import { Comment } from '../migrations/00003-createTableComments';
 
 export const getComments = cache(async () => {
   // return comments;
@@ -37,9 +37,22 @@ export const getCommentById = cache(async (id: number) => {
     SELECT
       *
     FROM
-      comment
+      comments
     WHERE
       id = ${id}
+  `;
+  return comment;
+});
+
+export const getCommentByUsername = cache(async (username: string) => {
+  const [comment] = await sql<{ id: number; username: string }[]>`
+    SELECT
+      id,
+      username
+    FROM
+      comments
+    WHERE
+      username = ${username.toLowerCase()}
   `;
   return comment;
 });
@@ -55,18 +68,25 @@ export const deleteCommentById = cache(async (id: number) => {
 });
 
 export const createComment = cache(
-  async (userId: number, eventId: number, textContent: string) => {
+  async (
+    userId: number,
+    eventId: number,
+    username: string,
+    textContent: string,
+  ) => {
     const [comment] = await sql<Comment[]>`
       INSERT INTO
         comments (
           user_id,
           event_id,
+          username,
           text_content
         )
       VALUES
         (
           ${userId},
           ${eventId},
+          ${username},
           ${textContent}
         ) RETURNING *
     `;
@@ -76,12 +96,19 @@ export const createComment = cache(
 );
 
 export const updateCommentById = cache(
-  async (id: number, userId: number, eventId: number, textContent: string) => {
+  async (
+    id: number,
+    userId: number,
+    eventId: number,
+    username: string,
+    textContent: string,
+  ) => {
     const [comment] = await sql<Comment[]>`
       UPDATE comments
       SET
         user_id = ${userId},
         event_id = ${eventId},
+        username = ${username},
         text_content = ${textContent}
       WHERE
         id = ${id} RETURNING *

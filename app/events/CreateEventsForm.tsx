@@ -3,7 +3,7 @@ import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+// const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY || undefined;
 
 export default function CreateEventForm({ userId }: { userId: number }) {
   const [title, setTitle] = useState('');
@@ -43,6 +43,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
               value={title}
               onChange={(event) => setTitle(event.currentTarget.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
           </label>
         </div>
@@ -53,6 +54,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
               value={description}
               onChange={(event) => setDescription(event.currentTarget.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
           </label>
         </div>
@@ -62,6 +64,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
             <input
               onChange={(event) => setLocation(event.currentTarget.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
           </label>
         </div>
@@ -75,7 +78,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
       </form>{' '}
       {location.trim() !== '' && (
         <GoogleMapsEmbed
-          apiKey={API_KEY}
+          apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
           height={100}
           width={200}
           mode="place"
