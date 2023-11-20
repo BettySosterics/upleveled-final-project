@@ -27,8 +27,8 @@ export default function CreateCommentForm({
       }),
     });
     router.refresh();
-    setTextContent('');
-    setCreatedBy('');
+    // setTextContent('');
+    // setCreatedBy('');
   }
 
   return (

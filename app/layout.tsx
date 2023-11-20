@@ -33,7 +33,8 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      {/* <body className={inter.className}> */}
+      <body className="bg-slate-500">
         <nav className="sticky top-0">
           <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-violet-900 text-neutral-300 font-medium">
             <Link href="/">

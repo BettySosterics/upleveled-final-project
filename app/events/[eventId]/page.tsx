@@ -1,15 +1,11 @@
 // 'use client';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound, redirect, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { notFound, redirect } from 'next/navigation';
 import { getEventById } from '../../../database/events';
 import {
   getUserBySessionToken,
   getUserCommentBySessionToken,
-  getUserEventBySessionToken,
 } from '../../../database/users';
 import CreateCommentForm from './CreateCommentForm';
 import GetAllComments from './GetAllComments';
@@ -64,7 +60,7 @@ export default async function EventPage(props: Props) {
 
   return (
     <>
-      <div className="absolute grid grid-cols-3 gap-40 mx-20">
+      <div className=" grid grid-cols-3 gap-40 mx-20">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <h1>{singleEvent.title}</h1>
           <h4>{singleEvent.description}</h4>
@@ -81,18 +77,17 @@ export default async function EventPage(props: Props) {
         <div>
           {userComment.length > 0 ? (
             <>
-              <h2>Comments on the event</h2>
               <div>
                 <div>
                   <GetAllComments />
                 </div>
-                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                {/* <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                   {userComment.map((comment) => (
                     <div key={`${comment.commentId}`}>
                       {comment.textContent} {comment.username}
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
               <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateCommentForm
@@ -117,14 +112,14 @@ export default async function EventPage(props: Props) {
           )}
         </div>
       </div>
-      <Image
+      {/* <Image
         src="/images/cover.jpg"
         alt="background image"
         width={0}
         height={0}
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
-      />
+      /> */}
     </>
   );
 }

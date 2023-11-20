@@ -3,6 +3,14 @@ import { cache } from 'react';
 import { sql } from '../database/connect';
 import { Comment } from '../migrations/00003-createTableComments';
 
+type CommentsFromUsersInEvents = {
+  commentId: number;
+  commentContent: string;
+  userId: number;
+  username: string;
+  eventId: number;
+};
+
 export const createComment = cache(
   async (
     userId: number,
@@ -116,6 +124,25 @@ export const updateCommentById = cache(
     return comment;
   },
 );
+
+export const getCommentsWithUserInfo = cache(async (eventId: number) => {
+  const commentsFromUser = await sql<CommentsFromUsersInEvents[]>`
+    SELECT DISTINCT
+      comments.id AS comment_id,
+      comments.content AS comment_content,
+      users.id AS user_id,
+      users.username AS user_name,
+      events.id AS event_id
+    FROM
+      comments
+      INNER JOIN events ON comments.event_id = events.id
+      INNER JOIN users ON comments.user_id = users.id
+    WHERE
+      comments.event_id = ${eventId}
+  `;
+
+  return commentsFromUser;
+});
 
 // export function getAnimal(id: number) {
 //   return animals1.find((animal) => animal.id === id);

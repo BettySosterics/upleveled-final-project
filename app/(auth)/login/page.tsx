@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getValidSessionByToken } from '../../../database/sessions';
 import LoginForm from './LoginForm';
-import styles from './page.module.css';
 
 export const metadata = {
   title: { default: 'Login | Bandify', template: '%s | Bandify' },

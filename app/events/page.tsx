@@ -1,6 +1,5 @@
 // import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import {
@@ -43,7 +42,7 @@ export default async function EventsPage() {
 
   return (
     <>
-      <div className="absolute grid grid-cols-3 gap-40 mx-20">
+      <div className="grid grid-cols-3 gap-40 mx-20">
         <div>
           <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
             All events
@@ -94,14 +93,14 @@ export default async function EventsPage() {
           )}
         </div>
       </div>
-      <Image
+      {/* <Image
         src="/images/cover.jpg"
         alt="background image"
         width={0}
         height={0}
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
-      />
+      /> */}
     </>
   );
 }

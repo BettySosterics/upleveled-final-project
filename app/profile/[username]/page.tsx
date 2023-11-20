@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getUserBySessionToken } from '../../../database/users';
 import ProfilePage from './ProfilePage';
@@ -24,8 +23,8 @@ export default async function UserDashboardPage({ params }: Props) {
     return redirect(`/login?returnTo=/login/${params.user}`);
   }
   return (
-    <div className="absolute">
-      <ProfilePage user={user?.id} />
+    <div>
+      <ProfilePage users={user?.id} />
     </div>
   );
 }

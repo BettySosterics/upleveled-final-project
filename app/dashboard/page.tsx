@@ -41,7 +41,7 @@ export default async function DashboardPage() {
   return (
     <>
       <div className="flex items-center ">
-        <div className="absolute top-60 gap-40">
+        <div>
           <>
             <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
               pentatonix
@@ -75,14 +75,14 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <Image
+      {/* <Image
         src="/images/cover.jpg"
         alt="background image"
         width={0}
         height={0}
         sizes="100vw"
         style={{ width: '100%', height: 'auto' }}
-      />
+      /> */}
     </>
   );
 }
