@@ -4,15 +4,13 @@ import { z } from 'zod';
 import { createEvent } from '../../../database/events';
 import { getValidSessionByToken } from '../../../database/sessions';
 
-export type Error = {
-  error: string;
-};
-
 const eventSchema = z.object({
   userId: z.number(),
   title: z.string().min(3),
   description: z.string().min(3),
   location: z.string().min(3),
+  date: z.string().min(3),
+  time: z.string().min(3),
 });
 
 export type CreateEventResponseBodyPost =
@@ -21,6 +19,8 @@ export type CreateEventResponseBodyPost =
         title: string;
         description: string;
         location: string;
+        date: string;
+        time: string;
       };
     }
   | {
@@ -62,12 +62,14 @@ export async function POST(
     );
   }
 
-  // 3. Create the event
+  // 3. Create the note
   const newEvent = await createEvent(
     result.data.userId,
     result.data.title,
     result.data.description,
     result.data.location,
+    result.data.date,
+    result.data.time,
   );
 
   // 4. If the note creation fails, return an error
@@ -75,18 +77,20 @@ export async function POST(
   if (!newEvent) {
     return NextResponse.json(
       {
-        errors: [{ message: 'Event creation failed' }],
+        errors: [{ message: 'Note creation failed' }],
       },
       { status: 500 },
     );
   }
 
-  // 6. Return the text content of the event
+  // 6. Return the text content of the note
   return NextResponse.json({
     event: {
       title: newEvent.title,
       description: newEvent.description,
       location: newEvent.location,
+      date: newEvent.date,
+      time: newEvent.time,
     },
   });
 }

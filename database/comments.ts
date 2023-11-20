@@ -3,6 +3,34 @@ import { cache } from 'react';
 import { sql } from '../database/connect';
 import { Comment } from '../migrations/00003-createTableComments';
 
+export const createComment = cache(
+  async (
+    userId: number,
+    eventId: number,
+    username: string,
+    textContent: string,
+  ) => {
+    const [comment] = await sql<Comment[]>`
+      INSERT INTO
+        comments (
+          user_id,
+          event_id,
+          username,
+          text_content
+        )
+      VALUES
+        (
+          ${userId},
+          ${eventId},
+          ${username},
+          ${textContent}
+        ) RETURNING *
+    `;
+
+    return comment;
+  },
+);
+
 export const getComments = cache(async () => {
   // return comments;
   const comments = await sql<Comment[]>`
@@ -66,34 +94,6 @@ export const deleteCommentById = cache(async (id: number) => {
 
   return comment;
 });
-
-export const createComment = cache(
-  async (
-    userId: number,
-    eventId: number,
-    username: string,
-    textContent: string,
-  ) => {
-    const [comment] = await sql<Comment[]>`
-      INSERT INTO
-        comments (
-          user_id,
-          event_id,
-          username,
-          text_content
-        )
-      VALUES
-        (
-          ${userId},
-          ${eventId},
-          ${username},
-          ${textContent}
-        ) RETURNING *
-    `;
-
-    return comment;
-  },
-);
 
 export const updateCommentById = cache(
   async (

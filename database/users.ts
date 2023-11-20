@@ -11,13 +11,16 @@ export type UserEvent = {
   title: string;
   description: string;
   location: string;
+  createdBy: string;
+  date: string;
+  time: string;
 };
 
-export type UserComment = {
-  commentId: number;
-  textContent: string;
-  username: string;
-};
+// export type UserComment = {
+//   commentId: number;
+//   textContent: string;
+//   username: string;
+// };
 
 export const createUser = cache(
   async (
@@ -144,12 +147,6 @@ export const getUserWithPasswordHashByUsername = cache(
   async (username: string) => {
     const [user] = await sql<UserWithPasswordHash[]>`
       SELECT
-        -- id,
-        -- username,
-        -- first_name AS "firstName",
-        -- last_name AS "lastName",
-        -- password_hash AS "passwordHash",
-        -- email,
         *
       FROM
         users
@@ -185,7 +182,9 @@ export const getUserEventBySessionToken = cache(async (token: string) => {
       events.id AS event_id,
       events.title AS title,
       events.description AS description,
-      events.location AS location
+      events.location AS location,
+      events.date AS DATE,
+      events.time AS TIME
     FROM
       events
       INNER JOIN users ON events.user_id = users.id
@@ -198,20 +197,20 @@ export const getUserEventBySessionToken = cache(async (token: string) => {
   return events;
 });
 
-export const getUserCommentBySessionToken = cache(async (token: string) => {
-  const comments = await sql<UserComment[]>`
-    SELECT
-      comments.id AS comment_id,
-      comments.text_content AS text_content,
-      users.username AS username
-    FROM
-      comments
-      INNER JOIN users ON comments.user_id = users.id
-      INNER JOIN sessions ON (
-        sessions.token = ${token}
-        AND sessions.user_id = users.id
-        AND sessions.expiry_timestamp > now ()
-      )
-  `;
-  return comments;
-});
+// export const getUserCommentBySessionToken = cache(async (token: string) => {
+//   const comments = await sql<UserComment[]>`
+//     SELECT
+//       comments.id AS comment_id,
+//       comments.text_content AS text_content,
+//       users.username AS username
+//     FROM
+//       comments
+//       INNER JOIN users ON comments.user_id = users.id
+//       INNER JOIN sessions ON (
+//         sessions.token = ${token}
+//         AND sessions.user_id = users.id
+//         AND sessions.expiry_timestamp > now ()
+//       )
+//   `;
+//   return comments;
+// });

@@ -8,8 +8,10 @@ import {
   getUserEventBySessionToken,
 } from '../../database/users';
 import CreateEventForm from './CreateEventsForm';
-import DeleteEventForm from './DeleteEventForm';
 import GetAllEvents from './GetAllEvents';
+
+// import DeleteEventForm from './DeleteEventForm';
+// import GetAllEvents from './GetAllEvents';
 
 // const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
@@ -58,11 +60,11 @@ export default async function EventsPage() {
                 {userEvent.map((event) => (
                   <li key={`${event.eventId}`}>
                     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  block text-gray-700 font-bold ">
-                      <DeleteEventForm eventId={event.eventId} />
+                      {/* <DeleteEventForm eventId={event.eventId} /> */}
                       <Link href={`/events/${event.eventId}`}>
-                        <h2 className="text-l">{event.title}</h2>{' '}
-                        <p>{event.description}</p>
-                        {event.location}{' '}
+                        <h2 className="text-l">{event.title}</h2>
+                        {event.description}
+                        {event.createdBy}
                       </Link>
                       {/* <GoogleMapsEmbed
                         apiKey={API_KEY}
