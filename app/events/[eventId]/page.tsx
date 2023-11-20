@@ -8,8 +8,11 @@ import { useState } from 'react';
 import { getEventById } from '../../../database/events';
 import {
   getUserBySessionToken,
+  getUserCommentBySessionToken,
   getUserEventBySessionToken,
 } from '../../../database/users';
+import CreateCommentForm from './CreateCommentForm';
+import GetAllComments from './GetAllComments';
 
 // import CreateCommentForm from './CreateCommentForm';
 
@@ -48,42 +51,49 @@ export default async function EventPage(props: Props) {
 
   const singleEvent = await getEventById(Number(props.params.eventId));
 
-  // // Display the notes for the current logged in user
-  // const userComment = await getUserCommentBySessionToken(
-  //   sessionTokenCookie.value,
-  // );
+  // Display the notes for the current logged in user
+  const userComment = await getUserCommentBySessionToken(
+    sessionTokenCookie.value,
+  );
 
   if (!singleEvent) {
     return notFound();
   }
 
-  // console.log('Checking: ', userComment);
+  console.log('Checking: ', userComment);
 
   return (
     <>
-      {' '}
-      <div className="absolute">
+      <div className="absolute grid grid-cols-3 gap-40 mx-20">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <h1>{singleEvent.title}</h1>
           <h4>{singleEvent.description}</h4>
         </div>
-        {/* <GoogleMapsEmbed
-            apiKey={API_KEY}
-            height={100}
-            width={400}
-            mode="place"
-            q={singleEvent.location}
-          /> */}
 
-        {/* <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          {/* {userComment.length > 0 ? (  <h2>Comments on the event</h2>
-              <ul>
-                {userComment.map((comment) => (
-                  <li key={`${comment.commentId}`}>
-                    {comment.textContent} {comment.username}
-                  </li>
-                ))}
-              </ul>
+        {/* <GoogleMapsEmbed
+          apiKey={API_KEY}
+          height={100}
+          width={400}
+          mode="place"
+          q={singleEvent.location}
+        /> */}
+
+        <div>
+          {userComment.length > 0 ? (
+            <>
+              <h2>Comments on the event</h2>
+              <div>
+                <div>
+                  <GetAllComments />
+                </div>
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                  {userComment.map((comment) => (
+                    <div key={`${comment.commentId}`}>
+                      {comment.textContent} {comment.username}
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateCommentForm
                   userId={user.id}
@@ -94,11 +104,10 @@ export default async function EventPage(props: Props) {
             </>
           ) : (
             <>
-              <div>
-                <h2>No comments yet</h2>
-                <p>Create one now!</p>
-
-                 <CreateCommentForm
+              <h2>No comments yet</h2>
+              <p>Create one now!</p>
+              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <CreateCommentForm
                   userId={user.id}
                   eventId={user.id}
                   username={user.username}
@@ -106,7 +115,7 @@ export default async function EventPage(props: Props) {
               </div>
             </>
           )}
-        </div>*/}
+        </div>
       </div>
       <Image
         src="/images/cover.jpg"

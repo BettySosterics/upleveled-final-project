@@ -49,11 +49,11 @@ export default async function RootLayout(props: Props) {
                 <Link href="/dashboard" className="hover:text-white">
                   Dashboard
                 </Link>
-                <Link href="/bands" className="hover:text-white">
+                {/* <Link href="/bands" className="hover:text-white">
                   My bands
-                </Link>
+                </Link> */}
                 <Link href="/events" className="hover:text-white">
-                  My events
+                  Events
                 </Link>
 
                 <div className="flex items-center justify-center gap-4">
