@@ -39,11 +39,11 @@ export default function CreateCommentForm({
       }}
       className={'bg-lynch-100'}
     >
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         <input
           value={textContent}
           onChange={(event) => setTextContent(event.currentTarget.value)}
-          className="shadow appearance-none  rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none  rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           required
         />
       </label>

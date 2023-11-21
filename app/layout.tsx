@@ -33,18 +33,10 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en" className={rubik.className}>
-      <body className="bg-background">
-        <nav className="fixed top-0 right-0 left-0 bottom-0">
+      <body className="bg-gradient-to-br from-background from-10% via-lynch-400 via-30% to-buttonHover to-90%">
+        <nav className="fixed top-0 right-0 left-0">
           <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-backgroundNavbar/75 text-textColorNavbar hover:text-hoverTextColorNavbar font-medium">
-            <Link href="/">
-              {/* <Image
-                src="/images/logo-transparent.png"
-                alt="bandify logo"
-                width={200}
-                height={100}
-              /> */}
-              B A N D I F Y
-            </Link>
+            <Link href="/">B A N D I F Y</Link>
             {user ? (
               <>
                 <Link href="/dashboard">Dashboard</Link>
@@ -73,10 +65,16 @@ export default async function RootLayout(props: Props) {
               </>
             ) : (
               <>
-                <Link href="/register" className="hover:text-white">
+                <Link
+                  href="/register"
+                  className="border border-white rounded-full px-5 py-1  hover:bg-buttonHover"
+                >
                   Register
                 </Link>
-                <Link href="/login" className="hover:text-white">
+                <Link
+                  href="/login"
+                  className="border border-white rounded-full px-5 py-1  hover:bg-buttonHover"
+                >
                   Login
                 </Link>
               </>
@@ -84,7 +82,7 @@ export default async function RootLayout(props: Props) {
           </div>
         </nav>
 
-        <div>{props.children}</div>
+        {props.children}
       </body>
     </html>
   );

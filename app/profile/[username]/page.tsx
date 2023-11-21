@@ -22,7 +22,7 @@ export default async function UserDashboardPage({ params }: Props) {
     return redirect(`/login?returnTo=/login/${params.user}`);
   }
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center m-20">
       <ProfilePage user={user?.id} />
     </div>
   );

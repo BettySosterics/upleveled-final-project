@@ -1,5 +1,3 @@
-// 'use client';
-import { GoogleMapsEmbed } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import { getEventById } from '../../../database/events';
@@ -14,8 +12,6 @@ import GetAllUsers from './GetAllUsers';
 // import CreateCommentForm from './CreateCommentForm';
 
 // import { AttendeeResponseBodyPost } from '../../api/attendee/route';
-
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 type Props = {
   params: {
@@ -61,19 +57,12 @@ export default async function EventPage(props: Props) {
 
   return (
     <>
-      <div className=" grid grid-cols-3 gap-40 mx-20">
+      <div className=" grid grid-cols-3 gap-40 m-20">
         <div className="bg-lynch-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <h1 className="text-xl">{singleEvent.title.toUpperCase()}</h1>
           <h4>{singleEvent.description}</h4>
         </div>
 
-        {/* <GoogleMapsEmbed
-          apiKey={API_KEY}
-          height={100}
-          width={400}
-          mode="place"
-          q={singleEvent.location}
-        /> */}
         <div className="bg-lynch-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <GetAllUsers />
         </div>

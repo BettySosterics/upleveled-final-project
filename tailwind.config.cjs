@@ -9,7 +9,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      background: '#64748b',
+      background: '#343a46',
       backgroundNavbar: '#343a46',
       backgroundCard: '#b1bbc8',
       textColorNavbar: '#f6f7f9',

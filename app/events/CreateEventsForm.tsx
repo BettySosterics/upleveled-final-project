@@ -39,52 +39,54 @@ export default function CreateEventForm({ userId }: { userId: number }) {
         event.preventDefault();
         await handleCreateEvent();
       }}
+      className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4"
     >
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         Title of the event
         <input
+          placeholder="min. 3 characters"
           value={title}
           onChange={(event) => setTitle(event.currentTarget.value)}
           required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
         />
       </label>
 
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         Description
         <input
           value={description}
           onChange={(event) => setDescription(event.currentTarget.value)}
           required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
         />
       </label>
 
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         Location
         <input
           value={location}
           onChange={(event) => setLocation(event.currentTarget.value)}
           required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
         />
       </label>
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         Date
         <input
           value={date}
           onChange={(event) => setDate(event.currentTarget.value)}
           required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
         />
       </label>
-      <label>
+      <label className="block text-textColorNavbar text-m font-medium mb-2">
         Time
         <input
           value={time}
           onChange={(event) => setTime(event.currentTarget.value)}
           required
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
         />
       </label>
       <br />

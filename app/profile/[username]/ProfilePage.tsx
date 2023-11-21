@@ -54,10 +54,10 @@ export default async function ProfilePage({ params }: Props) {
   return (
     <>
       <div>
-        <div className="place-self-center w-96 px-6 py-6 text-center bg-backgroundCard rounded ">
-          <div className="space-y-4 xl:space-y-6">
+        <div className="place-self-center w-full text-center bg-backgroundCard rounded ">
+          <div className="space-y-4 md:space-y-6">
             <Image
-              className="mx-auto rounded-full h-40 w-40 "
+              className="m-auto rounded-full h-45 w-45 "
               src="/images/avatars/avatar4.svg"
               alt="author avatar"
               width={200}

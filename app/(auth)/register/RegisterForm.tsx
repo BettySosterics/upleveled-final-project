@@ -48,52 +48,57 @@ export default function RegisterForm() {
     <div>
       <form
         onSubmit={async (event) => await handleRegister(event)}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-textColorNavbar text-m font-medium mb-2">
           first name
           <input
+            required
             placeholder="min. 3 characters"
             onChange={(event) => setFirstname(event.currentTarget.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-textColorNavbar text-m font-medium mb-2">
           last name
           <input
+            required
             placeholder="min. 3 characters"
             onChange={(event) => setLastname(event.currentTarget.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-textColorNavbar text-m font-medium mb-2">
           username
           <input
+            required
             placeholder="min. 3 characters"
             onChange={(event) => setUsername(event.currentTarget.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-textColorNavbar text-m font-medium mb-2">
           password
           <input
+            required
             placeholder="min. 8 characters"
             type="password"
             onChange={(event) => setPassword(event.currentTarget.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-textColorNavbar text-m font-medium mb-2">
           email address
           <input
+            required
             placeholder="min. 5 characters"
             onChange={(event) => setEmail(event.currentTarget.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           />
         </label>
 
         <div className="flex items-center justify-center mt-5">
-          <button className=" bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
+          <button className="bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
             Register
           </button>
         </div>

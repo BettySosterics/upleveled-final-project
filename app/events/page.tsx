@@ -42,7 +42,7 @@ export default async function EventsPage() {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-40 mx-20">
+      <div className="grid grid-cols-3 gap-40 m-20">
         <div>
           <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
             All events
@@ -62,8 +62,7 @@ export default async function EventsPage() {
                       {/* <DeleteEventForm eventId={event.eventId} /> */}
                       <Link href={`/events/${event.eventId}`}>
                         <h2 className="text-l">{event.title}</h2>
-                        {event.description}
-                        {event.createdBy}
+                        <p>{event.description}</p>
                       </Link>
                       {/* <GoogleMapsEmbed
                         apiKey={API_KEY}
@@ -77,16 +76,16 @@ export default async function EventsPage() {
                 ))}
               </ul>
 
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div>
                 <CreateEventForm userId={user.id} />
               </div>
             </>
           ) : (
             <>
-              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
+              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl">
                 You haven't created any event yet
               </h2>
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div>
                 <CreateEventForm userId={user.id} />
               </div>
             </>
