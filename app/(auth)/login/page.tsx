@@ -33,12 +33,12 @@ export default async function LoginPage({ searchParams }: Props) {
         </div>
       </div>
       <Image
-        src="/images/cover.jpg"
+        src="/images/appcover.jpg"
         alt="background image"
         width={0}
         height={0}
         sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
+        style={{ width: '100%', height: '100%' }}
       />
     </>
   );

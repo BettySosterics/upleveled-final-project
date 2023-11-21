@@ -9,6 +9,7 @@ import {
 } from '../../../database/users';
 import CreateCommentForm from './CreateCommentForm';
 import GetAllComments from './GetAllComments';
+import GetAllUsers from './GetAllUsers';
 
 // import CreateCommentForm from './CreateCommentForm';
 
@@ -61,8 +62,8 @@ export default async function EventPage(props: Props) {
   return (
     <>
       <div className=" grid grid-cols-3 gap-40 mx-20">
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h1>{singleEvent.title}</h1>
+        <div className="bg-lynch-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h1 className="text-xl">{singleEvent.title.toUpperCase()}</h1>
           <h4>{singleEvent.description}</h4>
         </div>
 
@@ -73,23 +74,18 @@ export default async function EventPage(props: Props) {
           mode="place"
           q={singleEvent.location}
         /> */}
-
+        <div className="bg-lynch-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <GetAllUsers />
+        </div>
         <div>
           {userComment.length > 0 ? (
             <>
               <div>
-                <div>
+                <div className="bg-lynch-100 shadow-md rounded px-8 pt-6 pb-8 mb-4  block ">
                   <GetAllComments />
                 </div>
-                {/* <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                  {userComment.map((comment) => (
-                    <div key={`${comment.commentId}`}>
-                      {comment.textContent} {comment.username}
-                    </div>
-                  ))}
-                </div> */}
               </div>
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="bg-lynch-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <CreateCommentForm
                   userId={user.id}
                   eventId={user.id}
@@ -112,14 +108,6 @@ export default async function EventPage(props: Props) {
           )}
         </div>
       </div>
-      {/* <Image
-        src="/images/cover.jpg"
-        alt="background image"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-      /> */}
     </>
   );
 }

@@ -18,13 +18,12 @@ export default async function UserDashboardPage({ params }: Props) {
   const user =
     sessionToken && (await getUserBySessionToken(sessionToken.value));
 
-  // added 14.11.23
   if (!sessionToken) {
     return redirect(`/login?returnTo=/login/${params.user}`);
   }
   return (
-    <div>
-      <ProfilePage users={user?.id} />
+    <div className="flex items-center justify-center">
+      <ProfilePage user={user?.id} />
     </div>
   );
 }

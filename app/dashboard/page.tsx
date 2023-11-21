@@ -1,16 +1,12 @@
 import { cookies } from 'next/headers';
-import Image from 'next/image';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import {
   getUserBySessionToken,
   getUserEventBySessionToken,
 } from '../../database/users';
-import Calendar from './Calendar';
-import CalendarView from './Calendar';
-import DoubleButton from './Calendar';
-import GoogleCalendar from './Calendar';
-import styles from './page.module.css';
+import GetAllEvents from '../events/GetAllEvents';
+import ProfilePage from '../profile/[username]/ProfilePage';
+import CalendarView from './CalendarView';
 
 export const metadata = {
   title: { default: 'Events | Bandify', template: '%s | Bandify' },
@@ -40,49 +36,17 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="flex items-center ">
+      <div className="grid grid-cols-3 mt-20">
         <div>
-          <>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              pentatonix
-            </h2>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              green day
-            </h2>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              tokio hotel
-            </h2>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              fall out boy
-            </h2>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              insalata mestiza
-            </h2>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2 text-2xl text-violet-100">
-              tokio hotel
-            </h2>
-          </>
+          <ProfilePage />
+        </div>
+        <div>
+          <GetAllEvents />
+        </div>
+        <div>
+          <CalendarView />
         </div>
       </div>
-
-      <div className="flex items-center justify-center">
-        <div className="absolute top-60 right-100 gap-40">
-          <>
-            <div>
-              <CalendarView />
-            </div>
-          </>
-        </div>
-      </div>
-
-      {/* <Image
-        src="/images/cover.jpg"
-        alt="background image"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-      /> */}
     </>
   );
 }

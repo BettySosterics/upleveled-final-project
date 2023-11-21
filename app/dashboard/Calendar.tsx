@@ -12,7 +12,7 @@ export default function CalendarView() {
   const [value, onChange] = useState<Value>(new Date());
 
   return (
-    <div className=" rounded-lg border-2">
+    <div className="bg-backgroundCard shadow-md rounded px-8 pt-6 pb-8 mb-4 block">
       <header>{/* <h1>your events</h1> */}</header>
       <div className="Sample__container">
         <main className="Sample__container__content">

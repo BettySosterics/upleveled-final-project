@@ -1,3 +1,4 @@
+import { BeakerIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
@@ -52,22 +53,28 @@ export default async function ProfilePage({ params }: Props) {
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        <div className="absolute top-20 ">
-          <div className="place-self-center w-96 px-6 py-6 text-center bg-violet-900 rounded-lg lg:mt-0 xl:px-10 border-2">
-            <div className="space-y-4 xl:space-y-6">
-              <Image
-                className="mx-auto rounded-full h-40 w-40 border-2"
-                src="/images/cover.jpg"
-                alt="author avatar"
-                width={200}
-                height={200}
-              />
-              <div className="space-y-2">
-                <div className="flex justify-center items-center flex-col space-y-3 text-lg font-medium leading-6">
-                  {user?.username} {user?.email} {user?.firstName}{' '}
-                  {user?.lastName}
-                  {/* <div key={`profile-inputs-${users.id}`}>
+      <div>
+        <div className="place-self-center w-96 px-6 py-6 text-center bg-backgroundCard rounded ">
+          <div className="space-y-4 xl:space-y-6">
+            <Image
+              className="mx-auto rounded-full h-40 w-40 "
+              src="/images/avatars/avatar4.svg"
+              alt="author avatar"
+              width={200}
+              height={200}
+            />
+            <div>
+              <div className="text-textColorCard">
+                <div>
+                  {user?.firstName.toUpperCase()} {user?.lastName.toUpperCase()}
+                </div>
+                <div>{user?.username.toUpperCase()} </div>
+                <div>{user?.email.toUpperCase()}</div>
+                <div>drummer</div>
+                <div>
+                  <PencilSquareIcon className="h-6 w-6 " />
+                </div>
+                {/* <div key={`profile-inputs-${users.id}`}>
                     <input
                       value={
                         users.id !== onEditId
@@ -134,20 +141,11 @@ export default async function ProfilePage({ params }: Props) {
                       </button>
                     )}
                   </div> */}
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <Image
-        src="/images/cover.jpg"
-        alt="background image"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-      /> */}
     </>
   );
 }

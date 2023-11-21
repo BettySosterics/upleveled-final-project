@@ -1,5 +1,5 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Rubik } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import { ReactNode, useState } from 'react';
 import LogoutButton from '../app/(auth)/logout/LogoutButton';
 import { getUserBySessionToken } from '../database/users';
 
-const inter = Inter({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata = {
   title: { default: 'Home page | Bandify', template: '%s | Bandify' },
@@ -32,40 +32,41 @@ export default async function RootLayout(props: Props) {
     sessionToken && (await getUserBySessionToken(sessionToken.value));
 
   return (
-    <html lang="en">
-      {/* <body className={inter.className}> */}
-      <body className="bg-slate-500">
-        <nav className="sticky top-0">
-          <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-violet-900 text-neutral-300 font-medium">
+    <html lang="en" className={rubik.className}>
+      <body className="bg-background">
+        <nav className="fixed top-0 right-0 left-0 bottom-0">
+          <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-backgroundNavbar/75 text-textColorNavbar hover:text-hoverTextColorNavbar font-medium">
             <Link href="/">
-              <Image
+              {/* <Image
                 src="/images/logo-transparent.png"
                 alt="bandify logo"
                 width={200}
                 height={100}
-              />
+              /> */}
+              B A N D I F Y
             </Link>
             {user ? (
               <>
-                <Link href="/dashboard" className="hover:text-white">
-                  Dashboard
-                </Link>
+                <Link href="/dashboard">Dashboard</Link>
                 {/* <Link href="/bands" className="hover:text-white">
                   My bands
                 </Link> */}
-                <Link href="/events" className="hover:text-white">
-                  Events
-                </Link>
+                <Link href="/events">Events</Link>
 
                 <div className="flex items-center justify-center gap-4">
-                  <Link
-                    href={`/profile/${user.username}`}
-                    className="hover:text-white"
-                  >
-                    <div>{user.username}</div>
+                  <Link href={`/profile/${user.username}`}>
+                    <div className="text-lynch-900">
+                      <Image
+                        className="mx-auto rounded-full "
+                        src="/images/avatars/avatar4.svg"
+                        alt="author avatar"
+                        width={30}
+                        height={30}
+                      />
+                    </div>
                   </Link>
 
-                  <div className="border border-white rounded-full px-5 py-1  hover:bg-violet-700 ">
+                  <div className="border border-white rounded-full px-5 py-1  hover:bg-buttonHover ">
                     <LogoutButton />
                   </div>
                 </div>
@@ -83,7 +84,7 @@ export default async function RootLayout(props: Props) {
           </div>
         </nav>
 
-        {props.children}
+        <div>{props.children}</div>
       </body>
     </html>
   );
