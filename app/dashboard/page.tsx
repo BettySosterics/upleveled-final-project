@@ -36,15 +36,17 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="grid grid-flow-row md:grid-flow-col gap-40 m-20">
-        <div>
-          <ProfilePage user={user.id} />
-        </div>
-        <div>
-          <GetAllEvents />
-        </div>
-        <div>
-          <CalendarView />
+      <div>
+        <div className="grid grid-flow-row md:grid-flow-col gap-40 m-20">
+          <div>
+            <ProfilePage user={user.id} />
+          </div>
+          <div>
+            <GetAllEvents />
+          </div>
+          <div>
+            <CalendarView />
+          </div>
         </div>
       </div>
     </>

@@ -33,7 +33,7 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en" className={rubik.className}>
-      <body className="bg-gradient-to-br from-background from-10% via-lynch-400 via-30% to-buttonHover to-90%">
+      <body className="bg-gradient-to-br from-background   via-buttonHover to-lynch-400 ">
         <nav className="fixed top-0 right-0 left-0">
           <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-backgroundNavbar/75 text-textColorNavbar hover:text-hoverTextColorNavbar font-medium">
             <Link href="/">B A N D I F Y</Link>

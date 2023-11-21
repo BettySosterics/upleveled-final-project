@@ -37,7 +37,7 @@ export default function CreateCommentForm({
         event.preventDefault();
         await handleCreateComment();
       }}
-      className={'bg-lynch-100'}
+      className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4"
     >
       <label className="block text-textColorNavbar text-m font-medium mb-2">
         <input
@@ -49,7 +49,7 @@ export default function CreateCommentForm({
       </label>
       <br />
       <br />
-      <button className="flex justify-center place-items-center bg-lynch-700 hover:bg-buttonHover text-lynch-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
+      <button className="flex justify-center place-items-center bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
         Post
       </button>
     </form>

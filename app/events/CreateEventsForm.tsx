@@ -91,7 +91,9 @@ export default function CreateEventForm({ userId }: { userId: number }) {
       </label>
       <br />
       <br />
-      <button>Create event</button>
+      <button className="flex justify-center place-items-center bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
+        Create event
+      </button>
     </form>
   );
 }

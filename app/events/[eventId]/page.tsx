@@ -84,9 +84,9 @@ export default async function EventPage(props: Props) {
             </>
           ) : (
             <>
-              <h2>No comments yet</h2>
-              <p>Create one now!</p>
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <h2>No comments yet. Create one now!</h2>
+
+              <div>
                 <CreateCommentForm
                   userId={user.id}
                   eventId={user.id}
