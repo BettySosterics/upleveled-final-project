@@ -37,21 +37,19 @@ export default function CreateCommentForm({
         event.preventDefault();
         await handleCreateComment();
       }}
-      className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      className=" bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4"
     >
-      <label className="block text-textColorNavbar text-m font-medium mb-2">
+      <div className=" text-textColorNavbar text-m font-medium mb-2 flex justify-center">
         <input
           value={textContent}
           onChange={(event) => setTextContent(event.currentTarget.value)}
           className="shadow appearance-none  rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
           required
         />
-      </label>
-      <br />
-      <br />
-      <button className="flex justify-center place-items-center bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
-        Post
-      </button>
+        <button className=" bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
+          Post
+        </button>
+      </div>
     </form>
   );
 }

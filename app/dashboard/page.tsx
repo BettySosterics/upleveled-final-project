@@ -1,15 +1,11 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import {
-  getUserBySessionToken,
-  getUserEventBySessionToken,
-} from '../../database/users';
+import { getUserBySessionToken } from '../../database/users';
 import GetAllEvents from '../events/GetAllEvents';
-import ProfilePage from '../profile/[username]/ProfilePage';
 import CalendarView from './CalendarView';
 
 export const metadata = {
-  title: { default: 'Events | Bandify', template: '%s | Bandify' },
+  title: { default: 'Dashboard | Bandify' },
   description: 'Bandify app',
 };
 
@@ -30,25 +26,20 @@ export default async function DashboardPage() {
   if (!user) redirect('/login?returnTo=/dashboard');
 
   // Display the notes for the current logged in user
-  const userEvent = await getUserEventBySessionToken(sessionTokenCookie.value);
+  // const userEvent = await getUserEventBySessionToken(sessionTokenCookie.value);
 
   // console.log('Checking: ', userEvent);
 
   return (
-    <>
-      <div>
-        <div className="grid grid-flow-row md:grid-flow-col gap-40 m-20">
-          <div>
-            <ProfilePage user={user.id} />
-          </div>
-          <div>
-            <GetAllEvents />
-          </div>
-          <div>
-            <CalendarView />
-          </div>
+    <div>
+      <div className="grid grid-flow-row md:grid-flow-col gap-40 m-20">
+        <div>
+          <GetAllEvents />
+        </div>
+        <div>
+          <CalendarView />
         </div>
       </div>
-    </>
+    </div>
   );
 }

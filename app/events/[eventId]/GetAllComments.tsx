@@ -5,13 +5,14 @@ export default async function GetAllComments() {
 
   return (
     <div>
-      <h2 className="text-xl">COMMENTS</h2>
       {comments.map((comment) => {
         return (
-          <div key={`${comment.id}`}>
-            <div>
-              <p className="font-light">{comment.username}</p>
-              <p className="italic ml-2">{comment.textContent}</p>
+          <div key={`comment-${comment.id}`}>
+            <div className="text-textColorNavbar mb-4">
+              <p className="font-light ">{comment.username} wrote:</p>
+              <p className="italic ml-2  left-5 bg-backgroundNavbar py-2 px-3 rounded-lg">
+                {comment.textContent}
+              </p>
             </div>
           </div>
         );

@@ -5,10 +5,9 @@ export default async function GetAllUsers() {
 
   return (
     <div>
-      <h2 className="text-xl">ATTENDEES</h2>
       {users.map((user) => {
         return (
-          <div key={`${user.id}`}>
+          <div key={`user-${user.id}`}>
             <div>
               <p className="font-light">{user.username}</p>
             </div>

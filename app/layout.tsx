@@ -3,7 +3,7 @@ import { Rubik } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import LogoutButton from '../app/(auth)/logout/LogoutButton';
 import { getUserBySessionToken } from '../database/users';
 

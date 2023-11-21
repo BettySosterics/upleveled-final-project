@@ -6,6 +6,7 @@ import {
   getUserBySessionToken,
   getUserEventBySessionToken,
 } from '../../database/users';
+import CalendarView from '../dashboard/CalendarView';
 import CreateEventForm from './CreateEventsForm';
 import GetAllEvents from './GetAllEvents';
 
@@ -41,65 +42,50 @@ export default async function EventsPage() {
   // console.log('Checking: ', userEvent);
 
   return (
-    <>
-      <div className="grid grid-cols-3 gap-40 m-20">
-        <div>
-          <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
-            All events
-          </h2>
-          <GetAllEvents />
-        </div>
-        <div>
-          {userEvent.length > 0 ? (
-            <>
-              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-violet-100">
-                Events created by you
-              </h2>
-              <ul>
-                {userEvent.map((event) => (
-                  <li key={`${event.eventId}`}>
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  block text-gray-700 font-bold ">
-                      {/* <DeleteEventForm eventId={event.eventId} /> */}
-                      <Link href={`/events/${event.eventId}`}>
-                        <h2 className="text-l">{event.title}</h2>
-                        <p>{event.description}</p>
-                      </Link>
-                      {/* <GoogleMapsEmbed
-                        apiKey={API_KEY}
-                        height={100}
-                        width={400}
-                        mode="place"
-                        q={event.location}
-                      /> */}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <div>
-                <CreateEventForm userId={user.id} />
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl">
-                You haven't created any event yet
-              </h2>
-              <div>
-                <CreateEventForm userId={user.id} />
-              </div>
-            </>
-          )}
-        </div>
+    <div className="grid grid-cols-3 gap-40 m-20">
+      <div>
+        <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-textColorNavbar">
+          ALL EVENTS
+        </h2>
+        <GetAllEvents />
       </div>
-      {/* <Image
-        src="/images/cover.jpg"
-        alt="background image"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
-      /> */}
-    </>
+      <div>
+        {userEvent.length > 0 ? (
+          <>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-textColorNavbar">
+              EVENTS CREATED BY YOU
+            </h2>
+            <ul>
+              {userEvent.map((event) => (
+                <li key={`event-${event.eventId}`}>
+                  <div className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4 block text-textColorNavbar font-bold ">
+                    <Link href={`/events/${event.eventId}`}>
+                      <h2 className="text-l">{event.title}</h2>
+                      <p>{event.description}</p>
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <CreateEventForm userId={user.id} />
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl">
+              You haven't created any event yet
+            </h2>
+            <div>
+              <CreateEventForm userId={user.id} />
+            </div>
+          </>
+        )}
+      </div>
+      <div>
+        <CalendarView />
+      </div>
+    </div>
   );
 }
