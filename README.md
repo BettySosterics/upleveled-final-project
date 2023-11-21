@@ -4,23 +4,23 @@ Bandify is a comprehensive platform designed to simplify and enhance your music 
 
 ## Key Features
 
-<!-- - **Registration Made Easy:** Sign up quickly and easily using your Gmail account, and seamlessly integrate your profile with Google Maps and Calendar for efficient coordination of rehearsals and events. -->
+<!-- - **Registration Made Easy:** Sign up quickly and easily using your Gmail account, and seamlessly integrate your profile with Google Maps and Calendar for efficient coordination of rehearsals and events.
 
 - **Roles for Musicians:** Musicians can define their role in the band, whether it's a guitarist, singer, or any other instrument. Bandify supports various roles and allows for flexible management and contribution within the band. Roles include admin, contributor, and member.
 
-- **Roles for Non-Musicians:** Non-musician team members can join as managers, tour managers, or other non-musician roles. Similar to musicians, they can have admin, contributor, or member roles, adapting to their unique responsibilities.
+- **Roles for Non-Musicians:** Non-musician team members can join as managers, tour managers, or other non-musician roles. Similar to musicians, they can have admin, contributor, or member roles, adapting to their unique responsibilities. -->
 
-- **Create and Manage Groups:** Whether you're a small band or a large ensemble, BandConnect allows you to create and manage groups with ease. You can provide a name, description, list of members, and the location of rehearsals. Larger bands can create subgroups for better organization and communication.
+- **Create and Manage Groups:** Whether you're a small band or a large ensemble, Bandify allows you to create and manage groups with ease. You can provide a name, description, list of members, and the location of rehearsals. Larger bands can create subgroups for better organization and communication.
 
 - **Plan Events and Rehearsals:** Organize gigs, rehearsals, and events with all the essential details, including map locations, event descriptions, and an attendance tracker to keep track of who's taking part.
 
-- **Seamless Invitations:** Invite members to your group effortlessly using their email addresses or a convenient invitation link. Building your music community has never been simpler.
+<!-- - **Seamless Invitations:** Invite members to your group effortlessly using their email addresses or a convenient invitation link. Building your music community has never been simpler.
 
 - **Effortless Communication:** Stay connected with your bandmates and team members through group chats, and also have private conversations when necessary.
 
-<!-- - **Manage Finances Collaboratively:** Keep track of your band's finances by creating and sharing a finance tracker. Admins can add, edit, and manage financial data, while contributors can assist in keeping everything up to date.
+- **Manage Finances Collaboratively:** Keep track of your band's finances by creating and sharing a finance tracker. Admins can add, edit, and manage financial data, while contributors can assist in keeping everything up to date.
 
-- **Sync with Your Calendar:** BandConnect offers a built-in calendar feature and the option to pair it with your Google or Apple Calendar, ensuring you never miss a beat in your schedule.
+- **Sync with Your Calendar:** Bandify offers a built-in calendar feature and the option to pair it with your Google or Apple Calendar, ensuring you never miss a beat in your schedule.
 
 - **Never Miss a Thing:** Receive reminders about upcoming events and rehearsal room payments via push notifications and email. Stay on top of your band's schedule without any hassle. -->
 
