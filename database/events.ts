@@ -47,6 +47,23 @@ export const getEvents = cache(async () => {
   return events;
 });
 
+export const getEventsWithLimitAndOffset = cache(
+  async (limit: number, offset: number) => {
+    // return events;
+    const events = await sql<Event[]>`
+      SELECT
+        *
+      FROM
+        events
+      LIMIT
+        ${limit}
+      OFFSET
+        ${offset}
+    `;
+    return events;
+  },
+);
+
 export const getEventById = cache(async (id: number) => {
   // Postgres always returns an array
   const [event] = await sql<Event[]>`

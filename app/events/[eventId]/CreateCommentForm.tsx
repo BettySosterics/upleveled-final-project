@@ -2,17 +2,10 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function CreateCommentForm({
-  userId,
-  eventId,
-  username,
-}: {
-  userId: number;
-  eventId: number;
-  username: string;
-}) {
+export default function CreateCommentForm({ userId }: { userId: number }) {
   const [textContent, setTextContent] = useState('');
-  const [createdBy, setCreatedBy] = useState(username);
+  const [username, setUsername] = useState('');
+  const [eventId, setEventId] = useState('');
 
   const router = useRouter();
 
@@ -27,8 +20,8 @@ export default function CreateCommentForm({
       }),
     });
     router.refresh();
-    // setTextContent('');
-    // setCreatedBy('');
+    setTextContent('');
+    setUsername('');
   }
 
   return (

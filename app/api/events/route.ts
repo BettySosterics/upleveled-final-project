@@ -16,6 +16,7 @@ const eventSchema = z.object({
 export type CreateEventResponseBodyPost =
   | {
       event: {
+        userId: number;
         title: string;
         description: string;
         location: string;
@@ -86,6 +87,7 @@ export async function POST(
   // 6. Return the text content of the note
   return NextResponse.json({
     event: {
+      userId: newEvent.userId,
       title: newEvent.title,
       description: newEvent.description,
       location: newEvent.location,

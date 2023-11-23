@@ -12,7 +12,7 @@ import GetAllUsers from './GetAllUsers';
 
 type Props = {
   params: {
-    eventId: string;
+    eventId: number;
     username: string;
     title: string;
     description: string;
@@ -38,19 +38,16 @@ export default async function EventPage(props: Props) {
   if (!user) redirect('/login?returnTo=/events');
 
   // Display the notes for the current logged in user
-
-  const singleEvent = await getEventById(Number(props.params.eventId));
-
-  // Display the notes for the current logged in user
   const userComment = await getUserCommentBySessionToken(
     sessionTokenCookie.value,
   );
+  // Display the notes for the current logged in user
+
+  const singleEvent = await getEventById(Number(props.params.eventId));
 
   if (!singleEvent) {
     return notFound();
   }
-
-  console.log('Checking: ', userComment);
 
   return (
     <div className="grid grid-rows-4 gap-10 m-20">
@@ -82,11 +79,7 @@ export default async function EventPage(props: Props) {
               </div>
             </div>
             <div>
-              <CreateCommentForm
-                userId={user.id}
-                eventId={user.id}
-                username={user.username}
-              />
+              <CreateCommentForm userId={user.id} />
             </div>
           </>
         ) : (
@@ -100,11 +93,7 @@ export default async function EventPage(props: Props) {
               </h2>
             </div>
             <div>
-              <CreateCommentForm
-                userId={user.id}
-                eventId={user.id}
-                username={user.username}
-              />
+              <CreateCommentForm userId={user.id} />
             </div>
           </>
         )}
