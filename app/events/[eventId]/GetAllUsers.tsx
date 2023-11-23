@@ -5,11 +5,15 @@ export default async function GetAllUsers() {
 
   return (
     <div>
+      <p>{users.length} people are going</p>
       {users.map((user) => {
         return (
           <div key={`user-${user.id}`}>
             <div>
-              <p className="font-light">{user.username}</p>
+              <p className="font-light indent-4">
+                {user.firstName.charAt(0).toUpperCase()}
+                {user.firstName.slice(1)}
+              </p>
             </div>
           </div>
         );
