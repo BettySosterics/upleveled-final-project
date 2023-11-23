@@ -1,5 +1,6 @@
 import './globals.css';
 import { Rubik } from 'next/font/google';
+import Head from 'next/head';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -33,6 +34,12 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en" className={rubik.className}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <body className="bg-gradient-to-br from-background   via-buttonHover to-lynch-400 ">
         <nav className="fixed top-0 right-0 left-0">
           <div className="flex items-center justify-center max-w-full h-14 gap-40 bg-backgroundNavbar/75 text-textColorNavbar hover:text-hoverTextColorNavbar font-medium">
