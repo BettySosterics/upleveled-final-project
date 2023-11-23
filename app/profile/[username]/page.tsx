@@ -4,6 +4,11 @@ import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { getUserBySessionToken } from '../../../database/users';
 
+export const metadata = {
+  title: { default: 'Profile | Bandify' },
+  description: 'Bandify app',
+};
+
 type Props = {
   params: {
     user: string | undefined;

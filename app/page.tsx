@@ -2,13 +2,10 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import {
-  getUserBySessionToken,
-  getUserEventBySessionToken,
-} from '../database/users';
+import { getUserBySessionToken } from '../database/users';
 
 export const metadata = {
-  title: { default: 'Home | Bandify', template: '%s | Bandify' },
+  title: { default: 'Home | Bandify' },
   description: 'Bandify app',
 };
 

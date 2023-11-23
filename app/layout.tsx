@@ -11,7 +11,7 @@ import { getUserBySessionToken } from '../database/users';
 const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata = {
-  title: { default: 'Home page | Bandify', template: '%s | Bandify' },
+  title: { default: 'Home page | Bandify' },
   description: 'Bandify app',
 };
 

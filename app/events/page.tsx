@@ -16,7 +16,7 @@ import GetAllEvents from './GetAllEvents';
 // const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export const metadata = {
-  title: { default: 'Events | Bandify', template: '%s | Bandify' },
+  title: { default: 'Events | Bandify' },
   description: 'Bandify app',
 };
 

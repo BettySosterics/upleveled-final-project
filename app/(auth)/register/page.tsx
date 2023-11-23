@@ -5,7 +5,7 @@ import { getValidSessionByToken } from '../../../database/sessions';
 import RegisterForm from './RegisterForm';
 
 export const metadata = {
-  title: { default: 'Register | Bandify', template: '%s | Bandify' },
+  title: { default: 'Register | Bandify' },
   description: 'Bandify app',
 };
 

@@ -5,7 +5,7 @@ import { getValidSessionByToken } from '../../../database/sessions';
 import LoginForm from './LoginForm';
 
 export const metadata = {
-  title: { default: 'Login | Bandify', template: '%s | Bandify' },
+  title: { default: 'Login | Bandify' },
   description: 'Bandify app',
 };
 
