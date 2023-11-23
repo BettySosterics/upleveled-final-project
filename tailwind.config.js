@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      black: '#000',
       background: '#343a46',
       backgroundNavbar: '#343a46',
       backgroundCard: '#b1bbc8',

@@ -58,7 +58,7 @@ export default async function RootLayout(props: Props) {
                     </div>
                   </Link>
 
-                  <div className="border border-white rounded-full px-5 py-1  hover:bg-buttonHover ">
+                  <div className="border border-white rounded-full px-5 py-1 hover:bg-buttonHover">
                     <LogoutButton />
                   </div>
                 </div>
