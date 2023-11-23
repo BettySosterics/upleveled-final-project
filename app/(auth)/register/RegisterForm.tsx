@@ -35,6 +35,7 @@ export default function RegisterForm() {
     }
 
     router.push(`/dashboard`);
+    router.refresh();
 
     /* if (response.ok) {
       const data = await response.json();

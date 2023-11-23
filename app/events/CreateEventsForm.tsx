@@ -44,7 +44,6 @@ export default function CreateEventForm({ userId }: { userId: number }) {
       <label className="block text-textColorNavbar text-m font-medium mb-2">
         Title of the event
         <input
-          placeholder="min. 3 characters"
           value={title}
           onChange={(event) => setTitle(event.currentTarget.value)}
           required

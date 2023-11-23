@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import { getEvents } from '../../database/events';
 
-export const metadata = {
-  title: 'Events',
-};
-
 export default async function GetAllEvents() {
   const events = await getEvents();
 
@@ -14,12 +10,10 @@ export default async function GetAllEvents() {
         return (
           <div
             key={`event-${event.id}`}
-            className="bg-backgroundNavbar/75 shadow-lg rounded px-8 pt-6 pb-8 mb-4 text-textColorNavbar font-medium "
+            className="hover:bg-backgroundNavbar/75 rounded px-8 pt-6 pb-6 text-textColorNavbar font-medium "
           >
             <Link href={`/events/${event.id}`}>
-              <div className="text-xl">
-                {event.title} {event.description}
-              </div>
+              <div className="text-l">{event.title}</div>
             </Link>
           </div>
         );

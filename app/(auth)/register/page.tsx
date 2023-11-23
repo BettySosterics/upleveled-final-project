@@ -26,7 +26,7 @@ export default async function RegisterPage() {
   return (
     <>
       <div className="flex items-center justify-center">
-        <div className="absolute top-60">
+        <div className="absolute top-20">
           <RegisterForm />
         </div>
       </div>

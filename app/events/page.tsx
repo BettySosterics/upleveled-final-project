@@ -42,9 +42,9 @@ export default async function EventsPage() {
   // console.log('Checking: ', userEvent);
 
   return (
-    <div className="grid grid-cols-3 gap-40 m-20">
-      <div>
-        <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl text-textColorNavbar">
+    <div className="grid grid-cols-3 gap-10 m-20">
+      <div className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 className="text-center text-2xl mb-4 text-textColorNavbar">
           ALL EVENTS
         </h2>
         <GetAllEvents />
@@ -58,7 +58,7 @@ export default async function EventsPage() {
             <ul>
               {userEvent.map((event) => (
                 <li key={`event-${event.eventId}`}>
-                  <div className="bg-backgroundNavbar/75 shadow-md rounded px-8 pt-6 pb-8 mb-4 block text-textColorNavbar font-bold ">
+                  <div className="bg-backgroundNavbar/75 shadow-md rounded px-4 pt-6 pb-8 mb-4 block text-textColorNavbar font-bold ">
                     <Link href={`/events/${event.eventId}`}>
                       <h2 className="text-l">{event.title}</h2>
                       <p>{event.description}</p>
@@ -73,17 +73,18 @@ export default async function EventsPage() {
             </div>
           </>
         ) : (
-          <>
-            <h2 className="place-self-center w-96 px-6 py-6 text-center text-2xl">
-              You haven't created any event yet
+          <div className="bg-backgroundNavbar/75 shadow-md rounded px-4 pt-6 pb-8 mb-4">
+            <h2 className="text-center text-2xl mb-4 text-textColorNavbar">
+              CREATE AN EVENT
             </h2>
-            <div>
-              <CreateEventForm userId={user.id} />
-            </div>
-          </>
+            <CreateEventForm userId={user.id} />
+          </div>
         )}
       </div>
-      <div>
+      <div className="bg-backgroundNavbar/75 shadow-md rounded px-4 pt-6 pb-8 mb-4">
+        <h2 className="text-center text-2xl mb-4 text-textColorNavbar">
+          CALENDAR
+        </h2>
         <CalendarView />
       </div>
     </div>

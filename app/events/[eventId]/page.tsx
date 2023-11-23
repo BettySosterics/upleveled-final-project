@@ -1,4 +1,4 @@
-import { MapIcon, MapPinIcon, UserIcon } from '@heroicons/react/24/solid';
+import { MapPinIcon, UserIcon } from '@heroicons/react/24/solid';
 import { cookies } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import { getEventById } from '../../../database/events';
@@ -9,10 +9,6 @@ import {
 import CreateCommentForm from './CreateCommentForm';
 import GetAllComments from './GetAllComments';
 import GetAllUsers from './GetAllUsers';
-
-// import CreateCommentForm from './CreateCommentForm';
-
-// import { AttendeeResponseBodyPost } from '../../api/attendee/route';
 
 type Props = {
   params: {

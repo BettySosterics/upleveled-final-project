@@ -28,7 +28,7 @@ export default async function LoginPage({ searchParams }: Props) {
   return (
     <>
       <div className="flex items-center justify-center">
-        <div className="absolute top-60">
+        <div className="absolute top-20">
           <LoginForm returnTo={searchParams.returnTo} />
         </div>
       </div>
