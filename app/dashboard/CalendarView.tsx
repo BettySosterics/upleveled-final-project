@@ -280,7 +280,7 @@ export default function CalendarView() {
               </p>
             </div>
 
-            <div className="border-b pb-4 border-dashed pt-5">
+            {/* <div className="border-b pb-4 border-dashed pt-5">
               <p className="text-xs font-light leading-3  ">18:00</p>
               <a className="focus:outline-none text-lg font-medium leading-5 mt-2">
                 Concert
@@ -288,7 +288,7 @@ export default function CalendarView() {
               <p className="text-sm pt-2 leading-none">
                 Meet in front of Kramladen
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

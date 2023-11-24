@@ -30,25 +30,28 @@ export default async function UserProfilePage({ params }: Props) {
   return (
     <div className="flex items-center justify-center m-20">
       <div>
-        <div className="place-self-center w-full text-center bg-backgroundCard rounded ">
+        <div className="place-self-center w-full text-center bg-background/75 rounded p-5">
           <div className="space-y-4 md:space-y-6">
             <Image
-              className="m-auto rounded-full h-45 w-45 "
+              className="m-auto rounded-full h-45 w-45 cursor-pointer"
               src="/images/avatars/avatar4.svg"
               alt="author avatar"
               width={200}
               height={200}
             />
             <div>
-              <div className="text-textColorCard">
+              <div className="text-textColorNavbar">
+                <div className="text-2xl mb-4">
+                  {user?.username.toUpperCase()}{' '}
+                </div>
                 <div>
                   {user?.firstName.toUpperCase()} {user?.lastName.toUpperCase()}
                 </div>
-                <div>{user?.username.toUpperCase()} </div>
-                <div>{user?.email.toUpperCase()}</div>
+
+                <div>{user?.email}</div>
                 <div>drummer</div>
                 <div>
-                  <PencilSquareIcon className="h-6 w-6 " />
+                  <PencilSquareIcon className="h-6 w-6 cursor-pointer" />
                 </div>
                 {/* <div key={`profile-inputs-${users.id}`}>
                     <input

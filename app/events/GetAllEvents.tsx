@@ -10,10 +10,13 @@ export default async function GetAllEvents() {
         return (
           <div
             key={`event-${event.id}`}
-            className="hover:bg-backgroundNavbar/75 rounded px-8 pt-6 pb-6 text-textColorNavbar font-medium "
+            className="hover:bg-backgroundNavbar/75 rounded px-8 pt-6 pb-6 text-textColorNavbar"
           >
             <Link href={`/events/${event.id}`}>
-              <div className="text-l">{event.title}</div>
+              <div className="text-xl font-medium">{event.title}</div>
+              <div className="text-sm">
+                {event.date} {event.time}
+              </div>
             </Link>
           </div>
         );
