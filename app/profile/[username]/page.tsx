@@ -9,24 +9,23 @@ export const metadata = {
   description: 'Bandify app',
 };
 
-type Props = {
-  params: {
-    user: string | undefined;
-  };
-};
+// type Props = {
+//   params: {
+//     user: string | undefined;
+//   };
+// };
 
-export default async function UserProfilePage({ params }: Props) {
-  // 1. Checking if the sessionToken cookie exists
-  const cookieStore = cookies();
-  const sessionToken = cookieStore.get('sessionToken');
+export default async function UserProfilePage() {
+  const sessionTokenCookie = cookies().get('sessionToken');
 
-  // 2. Get the current logged in user from the database using the sessionToken value
   const user =
-    sessionToken && (await getUserBySessionToken(sessionToken.value));
+    sessionTokenCookie &&
+    (await getUserBySessionToken(sessionTokenCookie.value));
 
-  if (!sessionToken) {
-    return redirect(`/login?returnTo=/login/${params.user}`);
-  }
+  if (!user) redirect('/login?returnTo=/dashboard');
+
+  // Display the notes for the current logged in user
+
   return (
     <div className="flex items-center justify-center m-20">
       <div>
@@ -42,13 +41,13 @@ export default async function UserProfilePage({ params }: Props) {
             <div>
               <div className="text-textColorNavbar">
                 <div className="text-2xl mb-4">
-                  {user?.username.toUpperCase()}{' '}
+                  {user.username.toUpperCase()}{' '}
                 </div>
                 <div>
-                  {user?.firstName.toUpperCase()} {user?.lastName.toUpperCase()}
+                  {user.firstName.toUpperCase()} {user.lastName.toUpperCase()}
                 </div>
 
-                <div>{user?.email}</div>
+                <div>{user.email}</div>
                 <div>drummer</div>
                 <div>
                   <PencilSquareIcon className="h-6 w-6 cursor-pointer" />

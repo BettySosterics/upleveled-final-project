@@ -47,9 +47,7 @@ export default async function RootLayout(props: Props) {
             {user ? (
               <>
                 <Link href="/dashboard">Dashboard</Link>
-                {/* <Link href="/bands" className="hover:text-white">
-                  My bands
-                </Link> */}
+                <Link href="/bands">Bands</Link>
                 <Link href="/events">Events</Link>
 
                 <div className="flex items-center justify-center gap-4">
