@@ -1,4 +1,4 @@
-app = "upleveled-final-project"
+app = "bandify-project"
 primary_region = "otp"
 
 # Apps without volume: Comment out the [mounts] configuration below
