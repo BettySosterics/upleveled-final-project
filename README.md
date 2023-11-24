@@ -2,6 +2,8 @@
 
 Bandify is a comprehensive platform designed to simplify and enhance your music collaboration experience. It caters to musicians, managers, offering a range of features to streamline your band's activities and make your music journey smoother.
 
+![Bandify website landing page](/public/images/landing%20page.PNG 'Bandify landing page')
+
 ## Key Features
 
 <!-- - **Registration Made Easy:** Sign up quickly and easily using your Gmail account, and seamlessly integrate your profile with Google Maps and Calendar for efficient coordination of rehearsals and events.
