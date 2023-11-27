@@ -2,7 +2,7 @@
 
 Bandify is a comprehensive platform designed to simplify and enhance your music collaboration experience. It caters to musicians, managers, offering a range of features to streamline your band's activities and make your music journey smoother.
 
-![Bandify website landing page](/public/images/landing%20page.PNG 'Bandify landing page')
+![Bandify website landing page](/public/images/landing_page.PNG 'Bandify landing page')
 
 ![Bandify dashboard page](/public/images/dashboard.PNG 'Bandify dashboard page')
 
