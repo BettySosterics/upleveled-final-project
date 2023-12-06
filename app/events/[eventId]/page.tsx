@@ -35,7 +35,7 @@ export default async function EventPage(props: Props) {
     sessionTokenCookie &&
     (await getUserBySessionToken(sessionTokenCookie.value));
 
-  if (!user) redirect('/login?returnTo=/events');
+  if (!user) redirect('/login?returnTo=/dashboard');
 
   // Display the notes for the current logged in user
   const userComment = await getUserCommentBySessionToken(
@@ -53,6 +53,7 @@ export default async function EventPage(props: Props) {
     <div className="grid grid-rows-4 gap-10 m-20">
       <div className=" bg-backgroundNavbar/75 text-textColorNavbar shadow-md rounded px-8 pt-6 pb-8 ">
         <h1 className="text-3xl  mb-4">{singleEvent.title.toUpperCase()}</h1>
+        {singleEvent.id}
         <h2 className="text-xl mb-2">DETAILS</h2>
         <div className="flex gap-5 bg-backgroundNavbar p-5 rounded">
           <UserIcon className="h-6 w-6" />
@@ -79,7 +80,11 @@ export default async function EventPage(props: Props) {
               </div>
             </div>
             <div>
-              <CreateCommentForm userId={user.id} />
+              <CreateCommentForm
+                userId={user.id}
+                eventId={user.id}
+                username={user.username}
+              />
             </div>
           </>
         ) : (
@@ -93,7 +98,11 @@ export default async function EventPage(props: Props) {
               </h2>
             </div>
             <div>
-              <CreateCommentForm userId={user.id} />
+              <CreateCommentForm
+                userId={user.id}
+                eventId={user.id}
+                username={user.username}
+              />
             </div>
           </>
         )}

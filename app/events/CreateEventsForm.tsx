@@ -31,6 +31,7 @@ export default function CreateEventForm({ userId }: { userId: number }) {
     setLocation('');
     setDate('');
     setTime('');
+    setCreatedBy('');
   }
 
   return (

@@ -3,6 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+export const metadata = {
+  title: { default: 'Home | Bandify' },
+  description: 'Bandify app',
+};
+
 export default function HomePage() {
   return (
     <main>

@@ -3,11 +3,6 @@ import { redirect } from 'next/navigation';
 import { getUserBySessionToken } from '../database/users';
 import HomePage from './HomePage';
 
-export const metadata = {
-  title: { default: 'Home | Bandify' },
-  description: 'Bandify app',
-};
-
 export default async function Home() {
   const sessionTokenCookie = cookies().get('sessionToken');
 

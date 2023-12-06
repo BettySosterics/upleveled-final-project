@@ -2,10 +2,18 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function CreateCommentForm({ userId }: { userId: number }) {
+export default function CreateCommentForm({
+  userId,
+  eventId,
+  username,
+}: {
+  userId: number;
+  eventId: number;
+  username: string;
+}) {
   const [textContent, setTextContent] = useState('');
-  const [username, setUsername] = useState('');
-  const [eventId, setEventId] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [eventId, setEventId] = useState([]);
 
   const router = useRouter();
 
@@ -21,7 +29,8 @@ export default function CreateCommentForm({ userId }: { userId: number }) {
     });
     router.refresh();
     setTextContent('');
-    setUsername('');
+
+    // setEventId([]);
   }
 
   return (
@@ -37,7 +46,6 @@ export default function CreateCommentForm({ userId }: { userId: number }) {
           value={textContent}
           onChange={(event) => setTextContent(event.currentTarget.value)}
           className="shadow appearance-none  rounded w-full py-2 px-3 text-sm bg-backgroundNavbar font-light leading-tight focus:outline-none focus:shadow-outline"
-          required
         />
         <button className=" bg-backgroundNavbar border-textColorNavbar text-textColorNavbar font-medium py-2 px-4 border rounded hover:bg-buttonHover">
           Post
