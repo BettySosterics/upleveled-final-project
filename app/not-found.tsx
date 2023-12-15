@@ -11,7 +11,7 @@ export default function RootNotFound() {
             You hit the wrong chord!
           </div>
           <div className="text-l font-medium drop-shadow-2xl">
-            Try going <Link href="/">back</Link> or visiting a site that exists
+            Try going <Link href="/">back</Link> or visit a site that exists
           </div>
         </div>
       </header>
