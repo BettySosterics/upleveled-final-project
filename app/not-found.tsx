@@ -25,10 +25,7 @@ export default function RootNotFound() {
                   <h4 className="mb-6 text-l md:text-xl">
                     You hit the wrong chord!
                   </h4>
-                  <h5 className="mb-6 text-l md:text-xl">
-                    Got tired of switching between apps when planning your next
-                    gig?
-                  </h5>
+
                   <h5 className="mb-6 text-l md:text-xl">
                     Try going <Link href="/">back</Link> or visit a site that
                     exists
